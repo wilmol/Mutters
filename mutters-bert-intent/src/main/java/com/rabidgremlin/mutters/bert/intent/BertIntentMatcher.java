@@ -60,7 +60,6 @@ public class BertIntentMatcher
   @Override
   public IntentMatch match(String utterance, Context context, Set<String> expectedIntents, HashMap<String, Object> debugValues)
   {
-
     // very similar to AbstractMachineLearningIntentMatcher
 
     if (StringUtils.isBlank(utterance))

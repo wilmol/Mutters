@@ -251,13 +251,14 @@ dependencies {
 ## Packaging
 Mutters is packaged into multiple jars to reduce dependencies and improve plugability.
 
-| Package                  | Description                                                                      |
-| ------------------------ | -------------------------------------------------------------------------------- |
-| mutters-core             | Contains core classes, interfaces and utility classes                            |
-| mutters-fasttext-intent  | Intent matcher that uses the fastText document classifier                        |
-| mutters-ink-bot          | Implementation of a Bot that uses Inkle's Ink engine for conversation scripting  |
-| mutters-opennlp-intent   | Intent matcher that uses OpenNLP's document classifier                           |
-| mutters-opennlp-ner      | Slot matcher that uses OpenNLP's named entity recognition framework              |
-| mutters-slots            | Implementation of a number of generic Slots                                      |
-| mutters-statemachine-bot | Implementation of a Bot that uses a state machine for conversation flows         |
-| mutters-templated-intent | Intent matcher that uses templates for matching                                  |
+| Package                                              | Description                                                                      |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [mutters-core](mutters-core)                         | Contains core classes, interfaces and utility classes                            |
+| [mutters-fasttext-intent](mutters-fasttext-intent)   | Intent matcher that uses the fastText document classifier                        |
+| [mutters-ink-bot](mutters-ink-bot)                   | Implementation of a Bot that uses Inkle's Ink engine for conversation scripting  |
+| [mutters-opennlp-intent](mutters-opennlp-intent)     | Intent matcher that uses OpenNLP's document classifier                           |
+| [mutters-opennlp-ner](mutters-opennlp-ner)           | Slot matcher that uses OpenNLP's named entity recognition framework              |
+| [mutters-slots](mutters-slots)                       | Implementation of a number of generic Slots                                      |
+| [mutters-statemachine-bot](mutters-statemachine-bot) | Implementation of a Bot that uses a state machine for conversation flows         |
+| [mutters-templated-intent](mutters-templated-intent) | Intent matcher that uses templates for matching                                  |
+| [mutters-bert-intent](mutters-bert-intent)           | Intent matcher that uses a Google BERT model for classification                  |
