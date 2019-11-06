@@ -1,4 +1,4 @@
-package com.rabidgremlin.mutters.bert.intent;
+package com.rabidgremlin.mutters.bert.tokenize;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rabidgremlin.mutters.bert.doccat.DoccatModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +24,7 @@ import com.google.common.collect.ImmutableList;
  * @author wilmol
  */
 public class WordPieceTokenizer
+    implements Tokenizer
 {
   private static final String CLS_TOKEN = "[CLS]";
 
@@ -44,12 +46,13 @@ public class WordPieceTokenizer
   /**
    * Tokenizes the text using word piece tokenization.
    * <p>
-   * Note: if the input text (number of words) exceeds the max seq length of the model the result will be truncated on
-   * the right.
+   * Note: if the input text (number of words) exceeds the {@code max_seq_length} of the model the result will be
+   * truncated on the right.
    *
    * @param text a single token or whitespace separated tokens
    * @return list of wordpiece tokens
    */
+  @Override
   public ImmutableList<String> tokenize(String text)
   {
     log.debug("Received: {}", text);

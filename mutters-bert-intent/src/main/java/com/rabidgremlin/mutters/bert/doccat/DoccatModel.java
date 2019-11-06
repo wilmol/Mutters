@@ -1,4 +1,4 @@
-package com.rabidgremlin.mutters.bert.intent;
+package com.rabidgremlin.mutters.bert.doccat;
 
 import static com.google.common.collect.ImmutableMap.toImmutableMap;
 
@@ -47,6 +47,7 @@ public class DoccatModel
     log.debug("Loading model and creating session");
     try
     {
+      // TODO(wilmol) use Resources#getResource here?
       SavedModelBundle model = SavedModelBundle.load(modelPath, "serve");
       modelSession = model.session();
     }
@@ -61,6 +62,7 @@ public class DoccatModel
     log.debug("Loading labels.txt");
     try
     {
+      // TODO(wilmol) use Resources#getResource here?
       modelLabels = Files.lines(new File(labelsPath).toPath())
           .map(line -> line.split(","))
           .collect(toImmutableMap(split -> Integer.parseInt(split[0]), split -> split[1].trim()));
@@ -74,6 +76,7 @@ public class DoccatModel
     log.debug("Loading vocab.txt");
     try
     {
+      // TODO(wilmol) use Resources#getResource here?
       modelVocab = Streams.mapWithIndex(Files.lines(new File(vocabPath).toPath()), Maps::immutableEntry)
           .collect(toImmutableMap(e -> e.getKey().trim(), Map.Entry::getValue));
     }

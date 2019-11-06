@@ -1,4 +1,4 @@
-package com.rabidgremlin.mutters.bert.intent;
+package com.rabidgremlin.mutters.bert.doccat;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
