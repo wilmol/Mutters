@@ -1,0 +1,138 @@
+package com.rabidgremlin.mutters.bert.intent;
+
+import static com.google.common.collect.ImmutableMap.toImmutableMap;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.tensorflow.SavedModelBundle;
+import org.tensorflow.Session;
+
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Streams;
+
+/**
+ * Represents a loaded BERT document categorizer (doccat) model.
+ *
+ * @author wilmol
+ */
+public class DoccatModel
+    implements AutoCloseable
+{
+  private final Logger log = LoggerFactory.getLogger(DoccatModel.class);
+
+  private final Session modelSession;
+
+  private final int maxSeqLength;
+
+  private final ImmutableMap<Integer, String> modelLabels;
+
+  private final ImmutableMap<String, Long> modelVocab;
+
+  /**
+   * Constructor; loads the BERT model and associated files.
+   *
+   * @param modelPath path to the saved_model.pb file and variables folder
+   * @param maxSeqLength {@code max_seq_length} value used to train the model
+   * @param labelsPath path to the labels.txt file used to train the model
+   * @param vocabPath path to the vocab.txt file used to train the model
+   * @throws IllegalArgumentException if loading the model fails
+   */
+  public DoccatModel(String modelPath, int maxSeqLength, String labelsPath, String vocabPath)
+  {
+    log.debug("Loading model and creating session");
+    try
+    {
+      SavedModelBundle model = SavedModelBundle.load(modelPath, "serve");
+      modelSession = model.session();
+    }
+    catch (Exception e)
+    {
+      log.error("Failed to load model");
+      throw new IllegalArgumentException(e);
+    }
+
+    this.maxSeqLength = maxSeqLength;
+
+    log.debug("Loading labels.txt");
+    try
+    {
+      modelLabels = Files.lines(new File(labelsPath).toPath())
+          .map(line -> line.split(","))
+          .collect(toImmutableMap(split -> Integer.parseInt(split[0]), split -> split[1].trim()));
+    }
+    catch (Exception e)
+    {
+      log.error("Failed to read labels file", e);
+      throw new IllegalArgumentException(e);
+    }
+
+    log.debug("Loading vocab.txt");
+    try
+    {
+      modelVocab = Streams.mapWithIndex(Files.lines(new File(vocabPath).toPath()), Maps::immutableEntry)
+          .collect(toImmutableMap(e -> e.getKey().trim(), Map.Entry::getValue));
+    }
+    catch (Exception e)
+    {
+      log.error("Failed to read vocab file", e);
+      throw new IllegalArgumentException(e);
+    }
+  }
+
+  /**
+   * Closes the models session. The model will not be usable afterwards.
+   *
+   * @see Session#close
+   */
+  @Override
+  public void close()
+  {
+    modelSession.close();
+    log.info("Closed model session");
+  }
+
+  /**
+   * Get the models session, session is thread safe.
+   *
+   * @return the models session
+   */
+  public Session session()
+  {
+    return modelSession;
+  }
+
+  /**
+   * Get the models {@code max_seq_length} value.
+   *
+   * @return the models {@code max_seq_length} value
+   */
+  public int maxSeqLength()
+  {
+    return maxSeqLength;
+  }
+
+  /**
+   * Get the loaded labels map.
+   *
+   * @return the loaded labels with id as key and label as value
+   */
+  public ImmutableMap<Integer, String> labels()
+  {
+    return modelLabels;
+  }
+
+  /**
+   * Get the loaded vocab map.
+   *
+   * @return the loaded vocab with tokens as keys and indices as values
+   */
+  public ImmutableMap<String, Long> vocab()
+  {
+    return modelVocab;
+  }
+}

@@ -20,7 +20,7 @@ dependencies {
     compile 'com.joestelmach:natty:0.12'
     compile 'org.apache.commons:commons-lang3:3.4'
         
-    testCompile 'junit:junit:4.11'
+    testCompile 'junit:junit:4.12'
     testCompile 'org.slf4j:slf4j-simple:1.7.21'
     testCompile 'org.hamcrest:hamcrest-all:1.3'
 }
