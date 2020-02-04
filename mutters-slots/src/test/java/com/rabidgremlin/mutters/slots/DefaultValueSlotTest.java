@@ -36,7 +36,7 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo("");
+    assertThat(defaultValueSlot.getDefaultValue()).isEmpty();
   }
 
   @Test

@@ -144,7 +144,7 @@ class CompoundIntentMatcherTest
     // Then
     assertThat(match).isNotNull();
     assertThat(match.matched()).isTrue();
-    assertThat(new MatcherScores().addScore("AlwaysIntent", 1.0)).isEqualTo(match.getMatcherScores());
+    assertThat(match.getMatcherScores()).isEqualTo(new MatcherScores().addScore("AlwaysIntent", 1.0));
   }
 
   @Test
@@ -161,7 +161,7 @@ class CompoundIntentMatcherTest
     // Then
     assertThat(match).isNotNull();
     assertThat(match.matched()).isTrue();
-    assertThat(new MatcherScores().addScore("AlwaysIntent", 1.0)).isEqualTo(match.getMatcherScores());
+    assertThat(match.getMatcherScores()).isEqualTo(new MatcherScores().addScore("AlwaysIntent", 1.0));
   }
 
   @Test
@@ -179,7 +179,7 @@ class CompoundIntentMatcherTest
     // Then
     assertThat(match).isNotNull();
     assertThat(match.matched()).isTrue();
-    assertThat(new MatcherScores().addScore("AlwaysIntent", 1.0)).isEqualTo(match.getMatcherScores());
+    assertThat(match.getMatcherScores()).isEqualTo(new MatcherScores().addScore("AlwaysIntent", 1.0));
   }
 
   @Test

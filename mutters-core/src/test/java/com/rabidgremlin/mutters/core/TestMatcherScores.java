@@ -4,8 +4,6 @@ package com.rabidgremlin.mutters.core;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth8.assertThat;
 
-import java.util.OptionalDouble;
-
 import org.junit.jupiter.api.Test;
 
 class TestMatcherScores
@@ -26,14 +24,13 @@ class TestMatcherScores
   {
     MatcherScores scores = new MatcherScores();
 
-    assertThat(scores.getBestScore()).isEqualTo(OptionalDouble.empty());
+    assertThat(scores.getBestScore()).isEmpty();
 
     scores.addScore("TestIntent", 0.56);
     scores.addScore("TestIntent2", 0.16);
     scores.addScore("TestIntent3", 0.99);
 
-    assertThat(scores.getBestScore()).isPresent();
-    assertThat(scores.getBestScore().getAsDouble()).isEqualTo(0.99);
+    assertThat(scores.getBestScore()).hasValue(0.99);
   }
 
   @Test
@@ -41,7 +38,7 @@ class TestMatcherScores
   {
     MatcherScores scores = new MatcherScores();
 
-    assertThat(scores.getBestScore()).isEqualTo(OptionalDouble.empty());
+    assertThat(scores.getBestScore()).isEmpty();
 
     scores.addScore("TestIntent", 0.56);
     scores.addScore("TestIntent3", 0.16);
@@ -56,7 +53,7 @@ class TestMatcherScores
   {
     MatcherScores scores = new MatcherScores();
 
-    assertThat(scores.getBestScore()).isEqualTo(OptionalDouble.empty());
+    assertThat(scores.getBestScore()).isEmpty();
 
     scores.addScore("TestIntent2", 0.16);
     scores.addScore("TestIntent3", 0.16);

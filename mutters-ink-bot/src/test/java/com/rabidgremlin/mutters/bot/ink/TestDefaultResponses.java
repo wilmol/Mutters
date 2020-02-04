@@ -2,6 +2,7 @@
 package com.rabidgremlin.mutters.bot.ink;
 
 import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.List;
 
@@ -139,9 +140,8 @@ class TestDefaultResponses
       }
     }
 
-    assertThat(responseACount > 0).isTrue();
-    assertThat(responseBCount > 0).isTrue();
-    assertThat(responseCCount > 0).isTrue();
+    assertWithMessage("Did not get any Response As").that(responseACount).isAtLeast(1);
+    assertWithMessage("Did not get any Response Bs").that(responseBCount).isAtLeast(1);
+    assertWithMessage("Did not get any Response Cs").that(responseCCount).isAtLeast(1);
   }
-
 }

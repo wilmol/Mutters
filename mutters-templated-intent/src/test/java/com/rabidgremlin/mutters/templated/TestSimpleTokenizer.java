@@ -16,7 +16,7 @@ class TestSimpleTokenizer
     String[] tokenizedInput = tokenizer.tokenize(inputText);
     assertThat(tokenizedInput).isNotNull();
 
-    assertThat(tokenizedInput.length).isEqualTo(expectedTokens.length);
+    assertThat(tokenizedInput).hasLength(expectedTokens.length);
     assertThat(tokenizedInput).isEqualTo(expectedTokens);
   }
 
@@ -25,7 +25,7 @@ class TestSimpleTokenizer
     String[] tokenizedInput = tokenizerLower.tokenize(inputText);
     assertThat(tokenizedInput).isNotNull();
 
-    assertThat(tokenizedInput.length).isEqualTo(expectedTokens.length);
+    assertThat(tokenizedInput).hasLength(expectedTokens.length);
     assertThat(tokenizedInput).isEqualTo(expectedTokens);
   }
 

@@ -37,13 +37,13 @@ class TestNER
     NameFinderME nameFinder = new NameFinderME(model);
     String[] tokens = SimpleTokenizer.INSTANCE
         .tokenize("Mr. John Smith of New York, married Anne Green of London today.");
-    assertThat(tokens.length).isEqualTo(15);
+    assertThat(tokens).hasLength(15);
 
     Span[] spans = nameFinder.find(tokens);
-    assertThat(spans.length).isEqualTo(2);
+    assertThat(spans).hasLength(2);
 
     String[] names = Span.spansToStrings(spans, tokens);
-    assertThat(names.length).isEqualTo(2);
+    assertThat(names).hasLength(2);
     assertThat(names[0]).isEqualTo("John Smith");
     assertThat(names[1]).isEqualTo("Anne Green");
   }
@@ -60,13 +60,13 @@ class TestNER
     NameFinderME nameFinder = new NameFinderME(model);
     String[] tokens = SimpleTokenizer.INSTANCE
         .tokenize("Mr. John Smith of New York, married Anne Green of London today.");
-    assertThat(tokens.length).isEqualTo(15);
+    assertThat(tokens).hasLength(15);
 
     Span[] spans = nameFinder.find(tokens);
-    assertThat(spans.length).isEqualTo(2);
+    assertThat(spans).hasLength(2);
 
     String[] locations = Span.spansToStrings(spans, tokens);
-    assertThat(locations.length).isEqualTo(2);
+    assertThat(locations).hasLength(2);
     assertThat(locations[0]).isEqualTo("New York");
     assertThat(locations[1]).isEqualTo("London");
   }
@@ -83,13 +83,13 @@ class TestNER
     NameFinderME nameFinder = new NameFinderME(model);
     String[] tokens = SimpleTokenizer.INSTANCE
         .tokenize("Mr. John Smith of New York, married Anne Green of London today.");
-    assertThat(tokens.length).isEqualTo(15);
+    assertThat(tokens).hasLength(15);
 
     Span[] spans = nameFinder.find(tokens);
-    assertThat(spans.length).isEqualTo(1);
+    assertThat(spans).hasLength(1);
 
     String[] locations = Span.spansToStrings(spans, tokens);
-    assertThat(locations.length).isEqualTo(1);
+    assertThat(locations).hasLength(1);
     assertThat(locations[0]).isEqualTo("today");
   }
 
@@ -105,10 +105,10 @@ class TestNER
     NameFinderME nameFinder = new NameFinderME(model);
     String[] tokens = SimpleTokenizer.INSTANCE.tokenize("Send a taxi to 12 Pleasent Street");
     Span[] spans = nameFinder.find(tokens);
-    assertThat(spans.length).isEqualTo(1);
+    assertThat(spans).hasLength(1);
 
     String[] locations = Span.spansToStrings(spans, tokens);
-    assertThat(locations.length).isEqualTo(1);
+    assertThat(locations).hasLength(1);
     assertThat(locations[0]).isEqualTo("12 Pleasent Street");
   }
 }
