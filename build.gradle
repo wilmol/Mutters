@@ -18,7 +18,7 @@ ext {
     commonsValidator = '1.6'
     jFastTextVersion = '0.4'
     commonsIoVersion = '2.6'
-    mockitoVersion = '3.1.0'
+    mockitoVersion = '3.2.4'
     bladeInkVersion = '0.7.3'
     openNlpVersion = '1.9.1'
     nattyVersion = '0.13'
