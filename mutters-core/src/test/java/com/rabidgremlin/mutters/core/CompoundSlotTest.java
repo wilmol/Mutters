@@ -1,11 +1,9 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.core;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth8.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
@@ -71,9 +69,9 @@ class CompoundSlotTest
   {
     CompoundSlot<String> compoundSlot = new CompoundSlot<>("compound", stringSlot, stringSlot);
     Optional<SlotMatch<String>> match = compoundSlot.match("hi", null);
-    assertTrue(match.isPresent());
-    assertEquals(match.get().getValue(), "hi");
-    assertEquals(match.get().getSlot(), stringSlot);
+    assertThat(match).isPresent();
+    assertThat(match.get().getValue()).isEqualTo("hi");
+    assertThat(match.get().getSlot()).isEqualTo(stringSlot);
   }
 
   @Test
@@ -81,9 +79,9 @@ class CompoundSlotTest
   {
     CompoundSlot<Number> compoundSlot = new CompoundSlot<>("compound", integerSlot, doubleSlot);
     Optional<SlotMatch<Number>> match = compoundSlot.match("123", null);
-    assertTrue(match.isPresent());
-    assertEquals(match.get().getValue(), 123);
-    assertEquals(match.get().getSlot(), integerSlot);
+    assertThat(match).isPresent();
+    assertThat(match.get().getValue()).isEqualTo(123);
+    assertThat(match.get().getSlot()).isEqualTo(integerSlot);
   }
 
   @Test
@@ -91,9 +89,9 @@ class CompoundSlotTest
   {
     CompoundSlot<Number> compoundSlot = new CompoundSlot<>("compound", doubleSlot, integerSlot);
     Optional<SlotMatch<Number>> match = compoundSlot.match("123", null);
-    assertTrue(match.isPresent());
-    assertEquals(match.get().getValue(), 123);
-    assertEquals(match.get().getSlot(), integerSlot);
+    assertThat(match).isPresent();
+    assertThat(match.get().getValue()).isEqualTo(123);
+    assertThat(match.get().getSlot()).isEqualTo(integerSlot);
   }
 
   @Test
@@ -102,9 +100,9 @@ class CompoundSlotTest
     Slot<?> composed = CompoundSlot.compose("composed", doubleSlot, integerSlot, stringSlot);
     assertNotNull(composed);
     Optional<? extends SlotMatch<?>> match = composed.match("123", null);
-    assertTrue(match.isPresent());
-    assertEquals(match.get().getValue(), 123);
-    assertEquals(match.get().getSlot(), integerSlot);
+    assertThat(match).isPresent();
+    assertThat(match.get().getValue()).isEqualTo(123);
+    assertThat(match.get().getSlot()).isEqualTo(integerSlot);
   }
 
   @Test
@@ -114,9 +112,9 @@ class CompoundSlotTest
     Slot<?> composed = CompoundSlot.compose("composed", slots);
     assertNotNull(composed);
     Optional<? extends SlotMatch<?>> match = composed.match("123", null);
-    assertTrue(match.isPresent());
-    assertEquals(match.get().getValue(), 123);
-    assertEquals(match.get().getSlot(), integerSlot);
+    assertThat(match).isPresent();
+    assertThat(match.get().getValue()).isEqualTo(123);
+    assertThat(match.get().getSlot()).isEqualTo(integerSlot);
   }
 
   @Test
@@ -126,9 +124,9 @@ class CompoundSlotTest
     Slot<?> composed = CompoundSlot.compose("composed", slots);
     assertNotNull(composed);
     Optional<? extends SlotMatch<?>> match = composed.match("123", null);
-    assertTrue(match.isPresent());
-    assertEquals(match.get().getValue(), 123);
-    assertEquals(match.get().getSlot(), integerSlot);
+    assertThat(match).isPresent();
+    assertThat(match.get().getValue()).isEqualTo(123);
+    assertThat(match.get().getSlot()).isEqualTo(integerSlot);
   }
 
   @Test
@@ -141,7 +139,7 @@ class CompoundSlotTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("No slots provided."));
+      assertThat(expected.getMessage()).isEqualTo("No slots provided.");
     }
   }
 
@@ -156,7 +154,7 @@ class CompoundSlotTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("No slots provided."));
+      assertThat(expected.getMessage()).isEqualTo("No slots provided.");
     }
   }
 
@@ -171,7 +169,7 @@ class CompoundSlotTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("No slots provided."));
+      assertThat(expected.getMessage()).isEqualTo("No slots provided.");
     }
   }
 }

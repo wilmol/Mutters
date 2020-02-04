@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.templated;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,19 +14,19 @@ class TestSimpleTokenizer
   private void checkResult(String inputText, String... expectedTokens)
   {
     String[] tokenizedInput = tokenizer.tokenize(inputText);
-    assertThat(tokenizedInput, is(notNullValue()));
+    assertThat(tokenizedInput).isNotNull();
 
-    assertThat(tokenizedInput.length, is(expectedTokens.length));
-    assertThat(tokenizedInput, is(expectedTokens));
+    assertThat(tokenizedInput.length).isEqualTo(expectedTokens.length);
+    assertThat(tokenizedInput).isEqualTo(expectedTokens);
   }
 
   private void checkResultWithLower(String inputText, String... expectedTokens)
   {
     String[] tokenizedInput = tokenizerLower.tokenize(inputText);
-    assertThat(tokenizedInput, is(notNullValue()));
+    assertThat(tokenizedInput).isNotNull();
 
-    assertThat(tokenizedInput.length, is(expectedTokens.length));
-    assertThat(tokenizedInput, is(expectedTokens));
+    assertThat(tokenizedInput.length).isEqualTo(expectedTokens.length);
+    assertThat(tokenizedInput).isEqualTo(expectedTokens);
   }
 
   @Test

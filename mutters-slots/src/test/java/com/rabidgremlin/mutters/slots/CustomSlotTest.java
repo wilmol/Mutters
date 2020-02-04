@@ -1,9 +1,8 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.slots;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth8.assertThat;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,10 +26,10 @@ class CustomSlotTest
 
     Optional<SlotMatch<String>> match = customSlot.match("optiona", null);
 
-    assertTrue(match.isPresent());
-    assertThat(match.get().getOriginalValue(), is("optiona"));
-    assertThat(match.get().getValue(), is("optionA"));
-    assertThat(match.get().getSlot(), is(customSlot));
+    assertThat(match).isPresent();
+    assertThat(match.get().getOriginalValue()).isEqualTo("optiona");
+    assertThat(match.get().getValue()).isEqualTo("optionA");
+    assertThat(match.get().getSlot()).isEqualTo(customSlot);
   }
 
   @Test
@@ -40,10 +39,10 @@ class CustomSlotTest
 
     Optional<SlotMatch<String>> match = customSlot.match("optionb", null);
 
-    assertTrue(match.isPresent());
-    assertThat(match.get().getOriginalValue(), is("optionb"));
-    assertThat(match.get().getValue(), is("optionB"));
-    assertThat(match.get().getSlot(), is(customSlot));
+    assertThat(match).isPresent();
+    assertThat(match.get().getOriginalValue()).isEqualTo("optionb");
+    assertThat(match.get().getValue()).isEqualTo("optionB");
+    assertThat(match.get().getSlot()).isEqualTo(customSlot);
   }
 
   @Test
@@ -56,10 +55,10 @@ class CustomSlotTest
 
     Optional<SlotMatch<String>> match = customSlot.match("keya", null);
 
-    assertTrue(match.isPresent());
-    assertThat(match.get().getOriginalValue(), is("keya"));
-    assertThat(match.get().getValue(), is("valueA"));
-    assertThat(match.get().getSlot(), is(customSlot));
+    assertThat(match).isPresent();
+    assertThat(match.get().getOriginalValue()).isEqualTo("keya");
+    assertThat(match.get().getValue()).isEqualTo("valueA");
+    assertThat(match.get().getSlot()).isEqualTo(customSlot);
   }
 
   @Test
@@ -67,7 +66,7 @@ class CustomSlotTest
   {
     CustomSlot customSlot = new CustomSlot("custom-slot", Arrays.asList("ABC", "xyz"));
 
-    assertThat(customSlot.toString(), is("CustomSlot [name=custom-slot, options={abc=ABC, xyz=xyz}]"));
+    assertThat(customSlot.toString()).isEqualTo("CustomSlot [name=custom-slot, options={abc=ABC, xyz=xyz}]");
   }
 
   @Test
@@ -78,6 +77,6 @@ class CustomSlotTest
     map.put("keyB", "valueB");
     CustomSlot customSlot = new CustomSlot("custom-slot", map);
 
-    assertThat(customSlot.toString(), is("CustomSlot [name=custom-slot, options={keya=valueA, keyb=valueB}]"));
+    assertThat(customSlot.toString()).isEqualTo("CustomSlot [name=custom-slot, options={keya=valueA, keyb=valueB}]");
   }
 }

@@ -1,10 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.List;
 
@@ -104,9 +101,9 @@ class TestDefaultResponses
 
     BotResponse response = testBotWithDefaultDefaultPhrases.respond(session, context, "Why is the sky blue ?");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Pardon?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Pardon?");
+    assertThat(response.isAskResponse()).isTrue();
   }
 
   @Test
@@ -123,8 +120,8 @@ class TestDefaultResponses
     {
       BotResponse response = testBotWithTestDefaultPhrases.respond(session, context, "Why is the sky blue ?");
 
-      assertThat(response, is(notNullValue()));
-      assertThat(response.isAskResponse(), is(true));
+      assertThat(response).isNotNull();
+      assertThat(response.isAskResponse()).isTrue();
 
       if (response.getResponse().equals("Response A"))
       {
@@ -142,9 +139,9 @@ class TestDefaultResponses
       }
     }
 
-    assertTrue(responseACount > 0);
-    assertTrue(responseBCount > 0);
-    assertTrue(responseCCount > 0);
+    assertThat(responseACount > 0).isTrue();
+    assertThat(responseBCount > 0).isTrue();
+    assertThat(responseCCount > 0).isTrue();
   }
 
 }

@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -37,7 +35,7 @@ class TestBadStoryState
     taxiBot.respond(session, context, "Order me a taxi");
 
     String stateJson = (String) session.getAttribute(INK_STORY_STATE_KEY);
-    assertThat(stateJson, is(notNullValue()));
+    assertThat(stateJson).isNotNull();
 
     // corrupt the state
     session.setAttribute(INK_STORY_STATE_KEY, "{junk}");

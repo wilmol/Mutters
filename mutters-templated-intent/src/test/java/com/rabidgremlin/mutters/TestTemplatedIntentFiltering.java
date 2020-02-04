@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.HashSet;
 
@@ -42,16 +40,16 @@ class TestTemplatedIntentFiltering
     // should match on hello intent
     IntentMatch intentMatch = matcher.match("hello", new Context(), null);
 
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getIntent(), is(notNullValue()));
-    assertThat(intentMatch.getIntent().getName(), is("HelloIntent"));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getIntent()).isNotNull();
+    assertThat(intentMatch.getIntent().getName()).isEqualTo("HelloIntent");
 
     // should match on goodbye intent
     intentMatch = matcher.match("bye", new Context(), null);
 
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getIntent(), is(notNullValue()));
-    assertThat(intentMatch.getIntent().getName(), is("GoodbyeIntent"));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getIntent()).isNotNull();
+    assertThat(intentMatch.getIntent().getName()).isEqualTo("GoodbyeIntent");
   }
 
   @Test
@@ -63,14 +61,14 @@ class TestTemplatedIntentFiltering
     // should match on hello intent
     IntentMatch intentMatch = matcher.match("hello", new Context(), expectedIntents);
 
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getIntent(), is(notNullValue()));
-    assertThat(intentMatch.getIntent().getName(), is("HelloIntent"));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getIntent()).isNotNull();
+    assertThat(intentMatch.getIntent().getName()).isEqualTo("HelloIntent");
 
     // should not match on goodbye intent (its not in expected intents)
     intentMatch = matcher.match("bye", new Context(), expectedIntents);
 
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
   }
 }

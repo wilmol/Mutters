@@ -1,10 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters;
 
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.SortedMap;
 import java.util.SortedSet;
@@ -45,17 +42,17 @@ class TestIntentMatcher
 
     IntentMatch intentMatch = matcher.match("What is 1 + 5", new Context(), null);
 
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getIntent(), is(additionIntent));
-    assertThat(intentMatch.getSlotMatches().size(), is(2));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getIntent()).isEqualTo(additionIntent);
+    assertThat(intentMatch.getSlotMatches()).hasSize(2);
 
     SlotMatch<?> number1Match = intentMatch.getSlotMatches().get(number1);
-    assertThat(number1Match, is(notNullValue()));
-    assertThat(number1Match.getValue(), is(1L));
+    assertThat(number1Match).isNotNull();
+    assertThat(number1Match.getValue()).isEqualTo(1L);
 
     SlotMatch<?> number2Match = intentMatch.getSlotMatches().get(number2);
-    assertThat(number2Match, is(notNullValue()));
-    assertThat(number2Match.getValue(), is(5L));
+    assertThat(number2Match).isNotNull();
+    assertThat(number2Match.getValue()).isEqualTo(5L);
 
   }
 
@@ -71,8 +68,8 @@ class TestIntentMatcher
 
     IntentMatch intentMatch = matcher.match("book this flight", new Context(), null);
 
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
   }
 
   @Test
@@ -88,8 +85,8 @@ class TestIntentMatcher
 
     IntentMatch intentMatch = matcher.match("next friday", new Context(), null);
 
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
   }
 
   @Test
@@ -104,27 +101,27 @@ class TestIntentMatcher
     intent.addSlot(slot);
 
     IntentMatch intentMatch = matcher.match("Bob", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
+    assertThat(intentMatch).isNotNull();
 
     intentMatch = matcher.match("", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
 
     intentMatch = matcher.match(" ", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
 
     intentMatch = matcher.match("?", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
 
     intentMatch = matcher.match("...", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
 
     intentMatch = matcher.match(" ?", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.matched(), is(false));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.matched()).isFalse();
   }
 
   // slot that matches a colour or defaults to black
@@ -159,25 +156,25 @@ class TestIntentMatcher
                                                      // Black
 
     IntentMatch intentMatch = matcher.match("My favourite color is green", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getSlotMatches().size(), is(1));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getSlotMatches()).hasSize(1);
     SlotMatch<?> colourMatch = intentMatch.getSlotMatches().get(colorSlot);
-    assertThat(colourMatch, is(notNullValue()));
-    assertThat(colourMatch.getValue(), is("Green"));
+    assertThat(colourMatch).isNotNull();
+    assertThat(colourMatch.getValue()).isEqualTo("Green");
 
     intentMatch = matcher.match("Red is my favourite", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getSlotMatches().size(), is(1));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getSlotMatches()).hasSize(1);
     colourMatch = intentMatch.getSlotMatches().get(colorSlot);
-    assertThat(colourMatch, is(notNullValue()));
-    assertThat(colourMatch.getValue(), is("Red"));
+    assertThat(colourMatch).isNotNull();
+    assertThat(colourMatch.getValue()).isEqualTo("Red");
 
     intentMatch = matcher.match("I have a favourite color", new Context(), null);
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getSlotMatches().size(), is(1));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getSlotMatches()).hasSize(1);
     colourMatch = intentMatch.getSlotMatches().get(colorSlot);
-    assertThat(colourMatch, is(notNullValue()));
-    assertThat(colourMatch.getValue(), is("Black"));
+    assertThat(colourMatch).isNotNull();
+    assertThat(colourMatch.getValue()).isEqualTo("Black");
   }
 
   @Test
@@ -193,21 +190,21 @@ class TestIntentMatcher
     IntentMatch intentMatch = matcher.match("hello", new Context(), null);
 
     // check that we matched on hello
-    assertThat(intentMatch, is(notNullValue()));
-    assertThat(intentMatch.getIntent().getName(), is("Hello"));
+    assertThat(intentMatch).isNotNull();
+    assertThat(intentMatch.getIntent().getName()).isEqualTo("Hello");
 
     // check that we got a scores
-    assertThat(intentMatch.getMatcherScores(), is(notNullValue()));
+    assertThat(intentMatch.getMatcherScores()).isNotNull();
     SortedMap<Double, SortedSet<String>> scores = intentMatch.getMatcherScores().getScores();
 
     // we should only have one score
-    assertThat(scores.keySet().size(), is(1));
+    assertThat(scores.keySet()).hasSize(1);
 
     // score should be 100% (1.0)
-    assertThat(scores.firstKey(), is(1.0));
+    assertThat(scores.firstKey()).isEqualTo(1.0);
 
     // it should be for the Hello intent
-    assertThat(scores.get(scores.firstKey()), hasItems("Hello"));
+    assertThat(scores.get(scores.firstKey())).contains("Hello");
   }
 
 }

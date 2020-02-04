@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.statemachine;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -31,9 +29,9 @@ class TestTaxiStateMachineBot
 
     BotResponse response = taxiBot.respond(session, context, "Send a taxi to 56 Kilm Steet");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Taxi 1e1f is on its way"));
-    assertThat(response.isAskResponse(), is(false));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Taxi 1e1f is on its way");
+    assertThat(response.isAskResponse()).isFalse();
   }
 
   @Test
@@ -44,15 +42,15 @@ class TestTaxiStateMachineBot
 
     BotResponse response = taxiBot.respond(session, context, "Order me a taxi");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("What is the pick up address ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("What is the pick up address ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = taxiBot.respond(session, context, "136 River Road");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Taxi 1983 is on its way"));
-    assertThat(response.isAskResponse(), is(false));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Taxi 1983 is on its way");
+    assertThat(response.isAskResponse()).isFalse();
   }
 
   @Test
@@ -63,9 +61,9 @@ class TestTaxiStateMachineBot
 
     BotResponse response = taxiBot.respond(session, context, "Cancel my cab order");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Your taxi has been cancelled"));
-    assertThat(response.isAskResponse(), is(false));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Your taxi has been cancelled");
+    assertThat(response.isAskResponse()).isFalse();
   }
 
   @Test
@@ -76,8 +74,8 @@ class TestTaxiStateMachineBot
 
     BotResponse response = taxiBot.respond(session, context, "Where is my ride ?");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Your taxi is about 7 minutes away"));
-    assertThat(response.isAskResponse(), is(false));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Your taxi is about 7 minutes away");
+    assertThat(response.isAskResponse()).isFalse();
   }
 }

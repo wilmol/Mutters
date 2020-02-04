@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.core.session;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +13,10 @@ class TestSession
     Session session = new Session();
 
     session.setAttribute("bob", "alice");
-    assertThat(session.getAttribute("bob"), is("alice"));
+    assertThat(session.getAttribute("bob")).isEqualTo("alice");
 
     session.removeAttribute("bob");
-    assertThat(session.getAttribute("bob"), is(nullValue()));
+    assertThat(session.getAttribute("bob")).isNull();
   }
 
   @Test
@@ -27,10 +25,10 @@ class TestSession
     Session session = new Session();
 
     session.setLongTermAttribute("bobLT", "aliceLT");
-    assertThat(session.getLongTermAttribute("bobLT"), is("aliceLT"));
+    assertThat(session.getLongTermAttribute("bobLT")).isEqualTo("aliceLT");
 
     session.removeLongTermAttribute("bobLT");
-    assertThat(session.getLongTermAttribute("bobLT"), is(nullValue()));
+    assertThat(session.getLongTermAttribute("bobLT")).isNull();
   }
 
   @Test
@@ -43,8 +41,8 @@ class TestSession
 
     session.reset();
 
-    assertThat(session.getLongTermAttribute("bob"), is(nullValue()));
-    assertThat(session.getLongTermAttribute("bobLT"), is("aliceLT"));
+    assertThat(session.getLongTermAttribute("bob")).isNull();
+    assertThat(session.getLongTermAttribute("bobLT")).isEqualTo("aliceLT");
   }
 
   @Test
@@ -57,7 +55,7 @@ class TestSession
 
     session.resetAll();
 
-    assertThat(session.getLongTermAttribute("bob"), is(nullValue()));
-    assertThat(session.getLongTermAttribute("bobLT"), is(nullValue()));
+    assertThat(session.getLongTermAttribute("bob")).isNull();
+    assertThat(session.getLongTermAttribute("bobLT")).isNull();
   }
 }

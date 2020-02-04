@@ -22,9 +22,10 @@ dependencies {
     compile "commons-io:commons-io:$commonsIoVersion"
         
     testCompile "org.junit.jupiter:junit-jupiter:$junitVersion"
-    testCompile "org.slf4j:slf4j-api:$slf4jVersion"
-    testCompile "org.hamcrest:hamcrest-all:$hamcrestAllVersion"
+    testCompile "com.google.truth:truth:$truthVersion"
+    testCompile "com.google.truth.extensions:truth-java8-extension:$truthVersion"
     testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "org.slf4j:slf4j-api:$slf4jVersion"
     testCompile project(':mutters-templated-intent')
     testCompile project(':mutters-fasttext-test-data')
 }

@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,8 +104,8 @@ class TestThreadLocal
         for (Pair<String, String> pair : phrasesAndResponses)
         {
           response = bot.respond(session, context, pair.getKey());
-          assertThat(response, is(notNullValue()));
-          assertThat(response.getResponse(), is(pair.getValue()));
+          assertThat(response).isNotNull();
+          assertThat(response.getResponse()).isEqualTo(pair.getValue());
         }
       }
       catch (BotException e)

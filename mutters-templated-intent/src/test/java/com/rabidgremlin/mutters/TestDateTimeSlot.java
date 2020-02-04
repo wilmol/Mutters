@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -39,14 +37,14 @@ class TestDateTimeSlot
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(1));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(1);
 
     SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
-    assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOriginalValue(), is("30th May 1974 at 10pm"));
-    assertThat(slotMatch.getValue(), is(ZonedDateTime.of(1974, 5, 30, 22, 0, 0, 0, ZoneId.systemDefault())));
+    assertThat(slotMatch).isNotNull();
+    assertThat(slotMatch.getOriginalValue()).isEqualTo("30th May 1974 at 10pm");
+    assertThat(slotMatch.getValue()).isEqualTo(ZonedDateTime.of(1974, 5, 30, 22, 0, 0, 0, ZoneId.systemDefault()));
   }
 
   @Test
@@ -64,14 +62,15 @@ class TestDateTimeSlot
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(1));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(1);
 
     SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
-    assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOriginalValue(), is("30th May 1974 at 10pm"));
-    assertThat(slotMatch.getValue(), is(ZonedDateTime.of(1974, 5, 30, 22, 0, 0, 0, context.getTimeZone().toZoneId())));
+    assertThat(slotMatch).isNotNull();
+    assertThat(slotMatch.getOriginalValue()).isEqualTo("30th May 1974 at 10pm");
+    assertThat(slotMatch.getValue())
+        .isEqualTo(ZonedDateTime.of(1974, 5, 30, 22, 0, 0, 0, context.getTimeZone().toZoneId()));
   }
 
   @Test
@@ -88,17 +87,17 @@ class TestDateTimeSlot
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(1));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(1);
 
     SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
-    assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOriginalValue(), is("last week"));
+    assertThat(slotMatch).isNotNull();
+    assertThat(slotMatch.getOriginalValue()).isEqualTo("last week");
 
     LocalDate sevenDaysAgo = LocalDate.now().minusDays(7);
 
-    assertThat(slotMatch.getValue(), is(sevenDaysAgo));
+    assertThat(slotMatch.getValue()).isEqualTo(sevenDaysAgo);
   }
 
 }

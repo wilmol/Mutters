@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,14 +31,14 @@ class TestLiteralSlot
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(1));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(1);
 
     SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
-    assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOriginalValue(), is("Kilroy Jones"));
-    assertThat(slotMatch.getValue(), is("kilroy jones"));
+    assertThat(slotMatch).isNotNull();
+    assertThat(slotMatch.getOriginalValue()).isEqualTo("Kilroy Jones");
+    assertThat(slotMatch.getValue()).isEqualTo("kilroy jones");
   }
 
   @Test
@@ -57,14 +55,14 @@ class TestLiteralSlot
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(1));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(1);
 
     SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
-    assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOriginalValue(), is("pinot noir"));
-    assertThat(slotMatch.getValue(), is("pinot noir"));
+    assertThat(slotMatch).isNotNull();
+    assertThat(slotMatch.getOriginalValue()).isEqualTo("pinot noir");
+    assertThat(slotMatch.getValue()).isEqualTo("pinot noir");
   }
 
 }

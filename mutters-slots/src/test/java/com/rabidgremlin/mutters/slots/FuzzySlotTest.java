@@ -1,9 +1,8 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.slots;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth8.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
@@ -27,10 +26,10 @@ class FuzzySlotTest
 
     Optional<SlotMatch<String>> match = fuzzySlot.match("optiona", null);
 
-    assertTrue(match.isPresent());
-    assertThat(match.get().getOriginalValue(), is("optiona"));
-    assertThat(match.get().getValue(), is("optionA"));
-    assertThat(match.get().getSlot(), is(fuzzySlot));
+    assertThat(match).isPresent();
+    assertThat(match.get().getOriginalValue()).isEqualTo("optiona");
+    assertThat(match.get().getValue()).isEqualTo("optionA");
+    assertThat(match.get().getSlot()).isEqualTo(fuzzySlot);
   }
 
   @Test
@@ -41,10 +40,10 @@ class FuzzySlotTest
 
     Optional<SlotMatch<String>> match = fuzzySlot.match("optiona", null);
 
-    assertTrue(match.isPresent());
-    assertThat(match.get().getOriginalValue(), is("optiona"));
-    assertThat(match.get().getValue(), is("optionA"));
-    assertThat(match.get().getSlot(), is(fuzzySlot));
+    assertThat(match).isPresent();
+    assertThat(match.get().getOriginalValue()).isEqualTo("optiona");
+    assertThat(match.get().getValue()).isEqualTo("optionA");
+    assertThat(match.get().getSlot()).isEqualTo(fuzzySlot);
   }
 
   @Test
@@ -55,10 +54,10 @@ class FuzzySlotTest
 
     Optional<SlotMatch<String>> match = fuzzySlot.match("optiona", null);
 
-    assertTrue(match.isPresent());
-    assertThat(match.get().getOriginalValue(), is("optiona"));
-    assertThat(match.get().getValue(), is("optionA"));
-    assertThat(match.get().getSlot(), is(fuzzySlot));
+    assertThat(match).isPresent();
+    assertThat(match.get().getOriginalValue()).isEqualTo("optiona");
+    assertThat(match.get().getValue()).isEqualTo("optionA");
+    assertThat(match.get().getSlot()).isEqualTo(fuzzySlot);
   }
 
   @Test
@@ -69,10 +68,10 @@ class FuzzySlotTest
 
     Optional<SlotMatch<String>> match = fuzzySlot.match("optiona", null);
 
-    assertTrue(match.isPresent());
-    assertThat(match.get().getOriginalValue(), is("optiona"));
-    assertThat(match.get().getValue(), is("optionA"));
-    assertThat(match.get().getSlot(), is(fuzzySlot));
+    assertThat(match).isPresent();
+    assertThat(match.get().getOriginalValue()).isEqualTo("optiona");
+    assertThat(match.get().getValue()).isEqualTo("optionA");
+    assertThat(match.get().getSlot()).isEqualTo(fuzzySlot);
   }
 
   @Test
@@ -86,7 +85,7 @@ class FuzzySlotTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("Invalid tolerance: 0.09"));
+      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 0.09");
     }
   }
 
@@ -101,7 +100,7 @@ class FuzzySlotTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("Invalid tolerance: 0.09"));
+      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 0.09");
     }
   }
 
@@ -116,7 +115,7 @@ class FuzzySlotTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("Invalid tolerance: 1.01"));
+      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 1.01");
     }
   }
 
@@ -131,7 +130,7 @@ class FuzzySlotTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("Invalid tolerance: 1.01"));
+      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 1.01");
     }
   }
 
@@ -141,6 +140,7 @@ class FuzzySlotTest
     List<String> options = Arrays.asList("optionA", "optionB");
     FuzzySlot fuzzySlot = new FuzzySlot("fuzzy-slot", options);
 
-    assertThat(fuzzySlot.toString(), is("FuzzySlot [name=fuzzy-slot, options=[optionA, optionB], tolerance=0.95]"));
+    assertThat(fuzzySlot.toString())
+        .isEqualTo("FuzzySlot [name=fuzzy-slot, options=[optionA, optionB], tolerance=0.95]");
   }
 }

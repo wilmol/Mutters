@@ -1,8 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.opennlp.ner;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.Map;
 
@@ -29,6 +28,6 @@ class SlotMatcherTests
     Map<Slot<?>, SlotMatch<?>> slotSlotMatchHashMap = slotMatcher.match(new Context(), testIntent, "testUtterance");
 
     SlotMatch<?> slotMatch = slotSlotMatchHashMap.get(testSlot);
-    assertThat(slotMatch.getValue(), is("Default value"));
+    assertThat(slotMatch.getValue()).isEqualTo("Default value");
   }
 }

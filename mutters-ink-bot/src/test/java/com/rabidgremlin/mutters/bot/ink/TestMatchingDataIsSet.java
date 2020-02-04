@@ -1,10 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink;
 
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.Set;
 
@@ -39,15 +36,15 @@ class TestMatchingDataIsSet
 
     IntentBotResponse response = taxiBot.respond(session, context, "Send a taxi to 56 Kilm Steet");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getMatchedIntent(), is(notNullValue()));
-    assertThat(response.getMatchedIntent().getName(), is("OrderTaxi"));
+    assertThat(response).isNotNull();
+    assertThat(response.getMatchedIntent()).isNotNull();
+    assertThat(response.getMatchedIntent().getName()).isEqualTo("OrderTaxi");
 
     MatcherScores matchingScores = response.getMatchingScores();
 
-    assertThat(matchingScores, is(notNullValue()));
+    assertThat(matchingScores).isNotNull();
     Set<String> bestIntents = matchingScores.getScores().get(matchingScores.getScores().lastKey());
-    assertThat(bestIntents.size(), is(1));
-    assertThat(bestIntents, hasItems("OrderTaxi"));
+    assertThat(bestIntents).hasSize(1);
+    assertThat(bestIntents).contains("OrderTaxi");
   }
 }

@@ -1,8 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -46,16 +45,16 @@ class TestSessionRestore
     Context context = new Context();
 
     BotResponse response = storyThreeBot.respond(session, context, "Three");
-    assertThat(response.getResponse(), is("You chose option three"));
+    assertThat(response.getResponse()).isEqualTo("You chose option three");
 
     response = storyThreeBot.respond(session, context, "Three");
-    assertThat(response.getResponse(), is("You chose option three"));
+    assertThat(response.getResponse()).isEqualTo("You chose option three");
 
     response = storyThreeBot.respond(session, context, "Three");
-    assertThat(response.getResponse(), is("You chose option three"));
+    assertThat(response.getResponse()).isEqualTo("You chose option three");
 
     response = storyThreeBot.respond(session, context, "Three");
-    assertThat(response.getResponse(), is("You chose option three"));
+    assertThat(response.getResponse()).isEqualTo("You chose option three");
 
     // switch to new story with more options and change of options order
     // Response should be "You chose option three" but actually land up "You chose
@@ -64,7 +63,7 @@ class TestSessionRestore
     try
     {
       response = storyNewBot.respond(session, context, "Three");
-      // assertThat(response.getResponse(), is("You chose option three"));
+      // assertThat(response.getResponse()).isEqualTo("You chose option three");
       fail("Code should not reach here. Expected exception to be thrown");
     }
     catch (Exception e)

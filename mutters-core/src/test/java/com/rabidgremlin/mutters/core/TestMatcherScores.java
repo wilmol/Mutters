@@ -1,8 +1,8 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.core;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth8.assertThat;
 
 import java.util.OptionalDouble;
 
@@ -15,10 +15,10 @@ class TestMatcherScores
   void shouldBeEmptyIfCreatedWithNoScores()
   {
     MatcherScores emptyScores = new MatcherScores();
-    assertThat(emptyScores.isEmpty(), is(true));
+    assertThat(emptyScores.isEmpty()).isTrue();
 
     emptyScores.addScore("TestIntent", 1.0);
-    assertThat(emptyScores.isEmpty(), is(false));
+    assertThat(emptyScores.isEmpty()).isFalse();
   }
 
   @Test
@@ -26,13 +26,14 @@ class TestMatcherScores
   {
     MatcherScores scores = new MatcherScores();
 
-    assertThat(scores.getBestScore(), is(OptionalDouble.empty()));
+    assertThat(scores.getBestScore()).isEqualTo(OptionalDouble.empty());
 
     scores.addScore("TestIntent", 0.56);
     scores.addScore("TestIntent2", 0.16);
     scores.addScore("TestIntent3", 0.99);
 
-    assertThat(scores.getBestScore().getAsDouble(), is(0.99));
+    assertThat(scores.getBestScore()).isPresent();
+    assertThat(scores.getBestScore().getAsDouble()).isEqualTo(0.99);
   }
 
   @Test
@@ -40,14 +41,14 @@ class TestMatcherScores
   {
     MatcherScores scores = new MatcherScores();
 
-    assertThat(scores.getBestScore(), is(OptionalDouble.empty()));
+    assertThat(scores.getBestScore()).isEqualTo(OptionalDouble.empty());
 
     scores.addScore("TestIntent", 0.56);
     scores.addScore("TestIntent3", 0.16);
     scores.addScore("TestIntent2", 0.16);
 
-    assertThat(scores.getScores().size(), is(2));
-    assertThat(scores.getScores().get(0.16).size(), is(2));
+    assertThat(scores.getScores()).hasSize(2);
+    assertThat(scores.getScores().get(0.16)).hasSize(2);
   }
 
   @Test
@@ -55,16 +56,16 @@ class TestMatcherScores
   {
     MatcherScores scores = new MatcherScores();
 
-    assertThat(scores.getBestScore(), is(OptionalDouble.empty()));
+    assertThat(scores.getBestScore()).isEqualTo(OptionalDouble.empty());
 
     scores.addScore("TestIntent2", 0.16);
     scores.addScore("TestIntent3", 0.16);
     scores.addScore("TestIntent0", 0.16);
 
-    assertThat(scores.getScores().size(), is(1));
-    assertThat(scores.getScores().get(0.16).size(), is(3));
-    assertThat(scores.getScores().get(0.16).first(), is("TestIntent0"));
-    assertThat(scores.getScores().get(0.16).last(), is("TestIntent3"));
+    assertThat(scores.getScores()).hasSize(1);
+    assertThat(scores.getScores().get(0.16)).hasSize(3);
+    assertThat(scores.getScores().get(0.16).first()).isEqualTo("TestIntent0");
+    assertThat(scores.getScores().get(0.16).last()).isEqualTo("TestIntent3");
   }
 
 }

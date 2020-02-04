@@ -1,10 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.List;
 
@@ -65,33 +62,33 @@ class TestConfusedBot
 
     BotResponse response = botWithoutConfusedKnot.respond(session, context, "Order me a taxi");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("What is the pick up address ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("What is the pick up address ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithoutConfusedKnot.respond(session, context, "etretret ret");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Where would you like to be picked up ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Where would you like to be picked up ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithoutConfusedKnot.respond(session, context, "eeeetttt");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Where would you like to be picked up ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Where would you like to be picked up ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithoutConfusedKnot.respond(session, context, "Where is my cab ?");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Where would you like to be picked up ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Where would you like to be picked up ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithoutConfusedKnot.respond(session, context, "ewewew");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Where would you like to be picked up ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Where would you like to be picked up ?");
+    assertThat(response.isAskResponse()).isTrue();
   }
 
   @Test
@@ -102,21 +99,21 @@ class TestConfusedBot
 
     BotResponse response = botWithConfusedKnot.respond(session, context, "Order me a taxi");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("What is the pick up address ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("What is the pick up address ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithConfusedKnot.respond(session, context, "etretret ret");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Where would you like to be picked up ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Where would you like to be picked up ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithConfusedKnot.respond(session, context, "Where is my cab ?");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), startsWith("I'm sorry I'm not understanding you at all"));
-    assertThat(response.isAskResponse(), is(false));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).startsWith("I'm sorry I'm not understanding you at all");
+    assertThat(response.isAskResponse()).isFalse();
   }
 
   @Test
@@ -127,21 +124,21 @@ class TestConfusedBot
 
     BotResponse response = botWithConfusedKnot.respond(session, context, "Order me a taxi");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("What is the pick up address ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("What is the pick up address ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithConfusedKnot.respond(session, context, "etretret ret");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Where would you like to be picked up ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Where would you like to be picked up ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithConfusedKnot.respond(session, context, "136 River Road");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), startsWith("Taxi 1983 is on its way"));
-    assertThat(response.isAskResponse(), is(false));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).startsWith("Taxi 1983 is on its way");
+    assertThat(response.isAskResponse()).isFalse();
   }
 
   @Test
@@ -152,30 +149,30 @@ class TestConfusedBot
 
     BotResponse response = botWithConfusedKnotWithReprompts.respond(session, context, "Order me a taxi");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("What is the pick up address ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("What is the pick up address ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithConfusedKnotWithReprompts.respond(session, context, "skibidi whop");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(), is("Where would you like to be picked up ?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse()).isEqualTo("Where would you like to be picked up ?");
+    assertThat(response.isAskResponse()).isTrue();
 
     response = botWithConfusedKnotWithReprompts.respond(session, context, "Where is my cab ?");
 
-    assertThat(response, is(notNullValue()));
-    assertThat(response.getResponse(),
-        startsWith("I'm struggling with that one. Do you want me to call our service line for you?"));
-    assertThat(response.isAskResponse(), is(true));
+    assertThat(response).isNotNull();
+    assertThat(response.getResponse())
+        .startsWith("I'm struggling with that one. Do you want me to call our service line for you?");
+    assertThat(response.isAskResponse()).isTrue();
 
-    assertThat(InkBotSessionUtils.getReprompt(session), is("Would you like me to call our service line?"));
+    assertThat(InkBotSessionUtils.getReprompt(session)).isEqualTo("Would you like me to call our service line?");
 
-    assertThat(response.getHint(), is("Yes or no"));
+    assertThat(response.getHint()).isEqualTo("Yes or no");
 
-    assertThat(response.getQuickReplies().size(), is(2));
+    assertThat(response.getQuickReplies()).hasSize(2);
     List<String> quickReplies = response.getQuickReplies();
-    assertThat(quickReplies.get(0), is("Yes"));
-    assertThat(quickReplies.get(1), is("No"));
+    assertThat(quickReplies.get(0)).isEqualTo("Yes");
+    assertThat(quickReplies.get(1)).isEqualTo("No");
   }
 }

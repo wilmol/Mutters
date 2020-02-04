@@ -1,8 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.slots;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -37,7 +36,7 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue(), is(""));
+    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo("");
   }
 
   @Test
@@ -58,7 +57,7 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue(), is(-1));
+    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo(-1);
   }
 
   @Test
@@ -79,7 +78,7 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue(), is(-1L));
+    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo(-1L);
   }
 
   @Test
@@ -100,7 +99,7 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue(), is(-1));
+    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo(-1);
   }
 
   @Test
@@ -121,7 +120,7 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue(), is(-1d));
+    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo(-1d);
   }
 
   @Test
@@ -142,7 +141,7 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue(), is(LocalDate.MIN));
+    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo(LocalDate.MIN);
   }
 
   @Test
@@ -163,6 +162,6 @@ class DefaultValueSlotTest
       }
     };
 
-    assertThat(defaultValueSlot.getDefaultValue(), is(LocalTime.MIN));
+    assertThat(defaultValueSlot.getDefaultValue()).isEqualTo(LocalTime.MIN);
   }
 }

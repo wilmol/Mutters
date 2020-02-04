@@ -1,10 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.core;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
@@ -101,8 +98,8 @@ class CompoundIntentMatcherTest
 
     IntentMatch match = compoundMatcher.match("The rain stays mainly in the plains", new Context(), null);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(true));
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isTrue();
   }
 
   @Test
@@ -115,8 +112,8 @@ class CompoundIntentMatcherTest
 
     IntentMatch match = compoundMatcher.match("The rain stays mainly in the plains", new Context(), null);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(true));
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isTrue();
   }
 
   @Test
@@ -129,8 +126,8 @@ class CompoundIntentMatcherTest
 
     IntentMatch match = compoundMatcher.match("The rain stays mainly in the plains", new Context(), null);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(false));
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isFalse();
   }
 
   @Test
@@ -145,9 +142,9 @@ class CompoundIntentMatcherTest
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
 
     // Then
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(true));
-    assertEquals(new MatcherScores().addScore("AlwaysIntent", 1.0), match.getMatcherScores());
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isTrue();
+    assertThat(new MatcherScores().addScore("AlwaysIntent", 1.0)).isEqualTo(match.getMatcherScores());
   }
 
   @Test
@@ -162,9 +159,9 @@ class CompoundIntentMatcherTest
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
 
     // Then
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(true));
-    assertEquals(new MatcherScores().addScore("AlwaysIntent", 1.0), match.getMatcherScores());
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isTrue();
+    assertThat(new MatcherScores().addScore("AlwaysIntent", 1.0)).isEqualTo(match.getMatcherScores());
   }
 
   @Test
@@ -180,9 +177,9 @@ class CompoundIntentMatcherTest
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
 
     // Then
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(true));
-    assertEquals(new MatcherScores().addScore("AlwaysIntent", 1.0), match.getMatcherScores());
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isTrue();
+    assertThat(new MatcherScores().addScore("AlwaysIntent", 1.0)).isEqualTo(match.getMatcherScores());
   }
 
   @Test
@@ -199,10 +196,10 @@ class CompoundIntentMatcherTest
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
 
     // Then
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(false));
-    assertEquals(new MatcherScores().addScore("IntentA", 0.5).addScore("IntentB", 0.4).addScore("IntentB", 0.3)
-        .addScore("IntentC", 0.2).addScore("IntentD", 0.1), match.getMatcherScores());
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isFalse();
+    assertThat(match.getMatcherScores()).isEqualTo(new MatcherScores().addScore("IntentA", 0.5).addScore("IntentB", 0.4)
+        .addScore("IntentB", 0.3).addScore("IntentC", 0.2).addScore("IntentD", 0.1));
   }
 
   @Test
@@ -217,9 +214,9 @@ class CompoundIntentMatcherTest
 
     // Then
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(true));
-    assertThat(match.getIntent().getName(), is("AlwaysIntent"));
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isTrue();
+    assertThat(match.getIntent().getName()).isEqualTo("AlwaysIntent");
   }
 
   @Test
@@ -233,9 +230,9 @@ class CompoundIntentMatcherTest
 
     // Then
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(true));
-    assertThat(match.getIntent().getName(), is("AlwaysIntent"));
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isTrue();
+    assertThat(match.getIntent().getName()).isEqualTo("AlwaysIntent");
   }
 
   @Test
@@ -251,10 +248,10 @@ class CompoundIntentMatcherTest
 
     // Then
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(false));
-    assertEquals(new MatcherScores().addScore("IntentA", 0.5).addScore("IntentB", 0.4).addScore("IntentB", 0.3)
-        .addScore("IntentC", 0.2).addScore("IntentD", 0.1), match.getMatcherScores());
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isFalse();
+    assertThat(match.getMatcherScores()).isEqualTo(new MatcherScores().addScore("IntentA", 0.5).addScore("IntentB", 0.4)
+        .addScore("IntentB", 0.3).addScore("IntentC", 0.2).addScore("IntentD", 0.1));
   }
 
   @Test
@@ -269,10 +266,10 @@ class CompoundIntentMatcherTest
 
     // Then
     IntentMatch match = intentMatcher.match("The rain stays mainly in the plains", new Context(), null);
-    assertThat(match, is(notNullValue()));
-    assertThat(match.matched(), is(false));
-    assertEquals(new MatcherScores().addScore("IntentA", 0.5).addScore("IntentB", 0.4).addScore("IntentB", 0.3)
-        .addScore("IntentC", 0.2).addScore("IntentD", 0.1), match.getMatcherScores());
+    assertThat(match).isNotNull();
+    assertThat(match.matched()).isFalse();
+    assertThat(match.getMatcherScores()).isEqualTo(new MatcherScores().addScore("IntentA", 0.5).addScore("IntentB", 0.4)
+        .addScore("IntentB", 0.3).addScore("IntentC", 0.2).addScore("IntentD", 0.1));
   }
 
   @Test
@@ -291,7 +288,7 @@ class CompoundIntentMatcherTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("No intent matchers provided."));
+      assertThat(expected.getMessage()).isEqualTo("No intent matchers provided.");
     }
   }
 
@@ -311,7 +308,7 @@ class CompoundIntentMatcherTest
     }
     catch (IllegalArgumentException expected)
     {
-      assertThat(expected.getMessage(), is("No intent matchers provided."));
+      assertThat(expected.getMessage()).isEqualTo("No intent matchers provided.");
     }
   }
 }

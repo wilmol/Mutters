@@ -1,9 +1,7 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.google.common.truth.Truth.assertThat;
 
 import java.util.List;
 
@@ -33,9 +31,9 @@ class TestUtterance
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(0));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(0);
   }
 
   @Test
@@ -68,14 +66,14 @@ class TestUtterance
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(1));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(1);
 
     SlotMatch<?> colorMatch = match.getSlotMatches().get(color);
-    assertThat(colorMatch, is(notNullValue()));
-    assertThat(colorMatch.getOriginalValue(), is("red"));
-    assertThat(colorMatch.getValue(), is("Red"));
+    assertThat(colorMatch).isNotNull();
+    assertThat(colorMatch.getOriginalValue()).isEqualTo("red");
+    assertThat(colorMatch.getValue()).isEqualTo("Red");
   }
 
   @Test
@@ -97,9 +95,9 @@ class TestUtterance
 
   private void assertNotMatch(TemplatedUtteranceMatch match)
   {
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(false));
-    assertThat(match.getSlotMatches().size(), is(0));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isFalse();
+    assertThat(match.getSlotMatches()).hasSize(0);
   }
 
   @Test
@@ -119,19 +117,19 @@ class TestUtterance
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(2));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(2);
 
     SlotMatch<?> colorMatch = match.getSlotMatches().get(color);
-    assertThat(colorMatch, is(notNullValue()));
-    assertThat(colorMatch.getOriginalValue(), is("red"));
-    assertThat(colorMatch.getValue(), is("Red"));
+    assertThat(colorMatch).isNotNull();
+    assertThat(colorMatch.getOriginalValue()).isEqualTo("red");
+    assertThat(colorMatch.getValue()).isEqualTo("Red");
 
     SlotMatch<?> foodMatch = match.getSlotMatches().get(food);
-    assertThat(foodMatch, is(notNullValue()));
-    assertThat(foodMatch.getOriginalValue(), is("grapes"));
-    assertThat(foodMatch.getValue(), is("grapes"));
+    assertThat(foodMatch).isNotNull();
+    assertThat(foodMatch.getOriginalValue()).isEqualTo("grapes");
+    assertThat(foodMatch.getValue()).isEqualTo("grapes");
   }
 
   @Test
@@ -170,14 +168,14 @@ class TestUtterance
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(1));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(1);
 
     SlotMatch<?> colorMatch = match.getSlotMatches().get(color);
-    assertThat(colorMatch, is(notNullValue()));
-    assertThat(colorMatch.getOriginalValue(), is("San francisco"));
-    assertThat(colorMatch.getValue(), is("San Francisco"));
+    assertThat(colorMatch).isNotNull();
+    assertThat(colorMatch.getOriginalValue()).isEqualTo("San francisco");
+    assertThat(colorMatch.getValue()).isEqualTo("San Francisco");
   }
 
   // TODO refactor out to a separate Intent test class
@@ -199,8 +197,8 @@ class TestUtterance
     Context context = new Context();
 
     TemplatedUtteranceMatch match = intent.matches(input, context);
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(false));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isFalse();
   }
 
   @Test
@@ -220,19 +218,19 @@ class TestUtterance
 
     TemplatedUtteranceMatch match = utterance.matches(input, slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(2));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(2);
 
     SlotMatch<?> colorMatch = match.getSlotMatches().get(color);
-    assertThat(colorMatch, is(notNullValue()));
-    assertThat(colorMatch.getOriginalValue(), is("red and grapes"));
-    assertThat(colorMatch.getValue(), is("Red and Grapes"));
+    assertThat(colorMatch).isNotNull();
+    assertThat(colorMatch.getOriginalValue()).isEqualTo("red and grapes");
+    assertThat(colorMatch.getValue()).isEqualTo("Red and Grapes");
 
     SlotMatch<?> foodMatch = match.getSlotMatches().get(food);
-    assertThat(foodMatch, is(notNullValue()));
-    assertThat(foodMatch.getOriginalValue(), is("bananas"));
-    assertThat(foodMatch.getValue(), is("bananas"));
+    assertThat(foodMatch).isNotNull();
+    assertThat(foodMatch.getOriginalValue()).isEqualTo("bananas");
+    assertThat(foodMatch.getValue()).isEqualTo("bananas");
   }
 
   @Test
@@ -254,24 +252,24 @@ class TestUtterance
 
     TemplatedUtteranceMatch match = utterance.matches(tokenizer.tokenize("san francisco red bananas "), slots, context);
 
-    assertThat(match, is(notNullValue()));
-    assertThat(match.isMatched(), is(true));
-    assertThat(match.getSlotMatches().size(), is(3));
+    assertThat(match).isNotNull();
+    assertThat(match.isMatched()).isTrue();
+    assertThat(match.getSlotMatches()).hasSize(3);
 
     SlotMatch<?> cityMatch = match.getSlotMatches().get(city);
-    assertThat(cityMatch, is(notNullValue()));
-    assertThat(cityMatch.getOriginalValue(), is("san francisco"));
-    assertThat(cityMatch.getValue(), is("San Francisco"));
+    assertThat(cityMatch).isNotNull();
+    assertThat(cityMatch.getOriginalValue()).isEqualTo("san francisco");
+    assertThat(cityMatch.getValue()).isEqualTo("San Francisco");
 
     SlotMatch<?> colorMatch = match.getSlotMatches().get(color);
-    assertThat(colorMatch, is(notNullValue()));
-    assertThat(colorMatch.getOriginalValue(), is("red"));
-    assertThat(colorMatch.getValue(), is("Red"));
+    assertThat(colorMatch).isNotNull();
+    assertThat(colorMatch.getOriginalValue()).isEqualTo("red");
+    assertThat(colorMatch.getValue()).isEqualTo("Red");
 
     SlotMatch<?> foodMatch = match.getSlotMatches().get(food);
-    assertThat(foodMatch, is(notNullValue()));
-    assertThat(foodMatch.getOriginalValue(), is("bananas"));
-    assertThat(foodMatch.getValue(), is("bananas"));
+    assertThat(foodMatch).isNotNull();
+    assertThat(foodMatch.getOriginalValue()).isEqualTo("bananas");
+    assertThat(foodMatch.getValue()).isEqualTo("bananas");
   }
 
   @Test
@@ -281,9 +279,9 @@ class TestUtterance
         tokenizer.tokenize("I like {Color} and {Food} and {color} food"));
 
     List<String> expectedSlotNames = teplatedUtterance.getExpectedSlotNames();
-    assertThat(expectedSlotNames, is(notNullValue()));
-    assertThat(expectedSlotNames.size(), is(2));
-    assertThat(expectedSlotNames.contains("color"), is(true));
-    assertThat(expectedSlotNames.contains("food"), is(true));
+    assertThat(expectedSlotNames).isNotNull();
+    assertThat(expectedSlotNames).hasSize(2);
+    assertThat(expectedSlotNames.contains("color")).isTrue();
+    assertThat(expectedSlotNames.contains("food")).isTrue();
   }
 }
