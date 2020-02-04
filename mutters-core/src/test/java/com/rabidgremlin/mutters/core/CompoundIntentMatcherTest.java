@@ -2,7 +2,7 @@
 package com.rabidgremlin.mutters.core;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -275,40 +275,28 @@ class CompoundIntentMatcherTest
   @Test
   void testConstructWithListOfMatchersRejectsEmptyList()
   {
-    try
-    {
-      // Given
-      List<IntentMatcher> intentMatchers = Collections.emptyList();
+    // Given
+    List<IntentMatcher> intentMatchers = Collections.emptyList();
 
-      // When
-      CompoundIntentMatcher.compose(intentMatchers);
+    // When
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> CompoundIntentMatcher.compose(intentMatchers));
 
-      // Then
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("No intent matchers provided.");
-    }
+    // Then
+    assertThat(expected).hasMessageThat().isEqualTo("No intent matchers provided.");
   }
 
   @Test
   void testConstructWithArrayOfMatchersRejectsEmptyArray()
   {
-    try
-    {
-      // Given
-      IntentMatcher[] intentMatchers = {};
+    // Given
+    IntentMatcher[] intentMatchers = {};
 
-      // When
-      CompoundIntentMatcher.compose(intentMatchers);
+    // When
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> CompoundIntentMatcher.compose(intentMatchers));
 
-      // Then
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("No intent matchers provided.");
-    }
+    // Then
+    assertThat(expected).hasMessageThat().isEqualTo("No intent matchers provided.");
   }
 }

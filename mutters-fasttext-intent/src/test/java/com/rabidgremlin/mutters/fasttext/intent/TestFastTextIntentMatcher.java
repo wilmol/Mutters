@@ -2,12 +2,14 @@
 package com.rabidgremlin.mutters.fasttext.intent;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.mockito.Mockito.mock;
 
 import java.net.URL;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.Intent;
@@ -17,15 +19,17 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 
 // based on training data from https://github.com/mlehman/nlp-intent-toolkit
 
+@ExtendWith(MockitoExtension.class)
 class TestFastTextIntentMatcher
 {
   private static FastTextIntentMatcher intentMatcher;
 
+  @Mock
+  private static SlotMatcher slotMatcher;
+
   @BeforeAll
   static void setUp()
   {
-    SlotMatcher slotMatcher = mock(SlotMatcher.class);
-
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/fasttext-weather-model.bin");
     assertThat(modelUrl).isNotNull();
 

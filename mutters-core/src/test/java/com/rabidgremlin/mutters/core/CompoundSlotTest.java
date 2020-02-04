@@ -3,8 +3,7 @@ package com.rabidgremlin.mutters.core;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth8.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -98,7 +97,7 @@ class CompoundSlotTest
   void testComposeStaticFactoryVarargs()
   {
     Slot<?> composed = CompoundSlot.compose("composed", doubleSlot, integerSlot, stringSlot);
-    assertNotNull(composed);
+    assertThat(composed).isNotNull();
     Optional<? extends SlotMatch<?>> match = composed.match("123", null);
     assertThat(match).isPresent();
     assertThat(match.get().getValue()).isEqualTo(123);
@@ -110,7 +109,7 @@ class CompoundSlotTest
   {
     Slot<?>[] slots = { doubleSlot, integerSlot, stringSlot };
     Slot<?> composed = CompoundSlot.compose("composed", slots);
-    assertNotNull(composed);
+    assertThat(composed).isNotNull();
     Optional<? extends SlotMatch<?>> match = composed.match("123", null);
     assertThat(match).isPresent();
     assertThat(match.get().getValue()).isEqualTo(123);
@@ -122,7 +121,7 @@ class CompoundSlotTest
   {
     List<Slot<?>> slots = Arrays.asList(doubleSlot, integerSlot, stringSlot);
     Slot<?> composed = CompoundSlot.compose("composed", slots);
-    assertNotNull(composed);
+    assertThat(composed).isNotNull();
     Optional<? extends SlotMatch<?>> match = composed.match("123", null);
     assertThat(match).isPresent();
     assertThat(match.get().getValue()).isEqualTo(123);
@@ -132,44 +131,26 @@ class CompoundSlotTest
   @Test
   void testComposeStaticFactoryRejectsEmptyVarargs()
   {
-    try
-    {
-      Slot<?> composed = CompoundSlot.compose("composed");
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("No slots provided.");
-    }
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> CompoundSlot.compose("composed"));
+    assertThat(expected).hasMessageThat().isEqualTo("No slots provided.");
   }
 
   @Test
   void testComposeStaticFactoryRejectsEmptyArray()
   {
-    try
-    {
-      Slot<?>[] slots = {};
-      CompoundSlot.compose("composed", slots);
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("No slots provided.");
-    }
+    Slot<?>[] slots = {};
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> CompoundSlot.compose("composed", slots));
+    assertThat(expected).hasMessageThat().isEqualTo("No slots provided.");
   }
 
   @Test
   void testComposeStaticFactoryRejectsEmptyList()
   {
-    try
-    {
-      List<Slot<?>> slots = Collections.emptyList();
-      CompoundSlot.compose("composed", slots);
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("No slots provided.");
-    }
+    List<Slot<?>> slots = Collections.emptyList();
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> CompoundSlot.compose("composed", slots));
+    assertThat(expected).hasMessageThat().isEqualTo("No slots provided.");
   }
 }

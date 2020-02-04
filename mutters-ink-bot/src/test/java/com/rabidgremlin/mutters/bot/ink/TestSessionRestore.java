@@ -2,7 +2,7 @@
 package com.rabidgremlin.mutters.bot.ink;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -60,18 +60,7 @@ class TestSessionRestore
     // Response should be "You chose option three" but actually land up "You chose
     // option two" due to bug in ink
     // so short term, we will just spit out a BadInkStoryState exception
-    try
-    {
-      response = storyNewBot.respond(session, context, "Three");
-      // assertThat(response.getResponse()).isEqualTo("You chose option three");
-      fail("Code should not reach here. Expected exception to be thrown");
-    }
-    catch (Exception e)
-    {
-      if (!e.getCause().getClass().equals(BadInkStoryState.class))
-      {
-        fail("Was expecting cause to be BadInkStoryState exception.");
-      }
-    }
+    BotException thrown = assertThrows(BotException.class, () -> storyNewBot.respond(session, context, "Three"));
+    assertThat(thrown).hasCauseThat().isInstanceOf(BadInkStoryState.class);
   }
 }

@@ -2,7 +2,7 @@
 package com.rabidgremlin.mutters.bot.ink;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -40,20 +40,7 @@ class TestBadStoryState
     // corrupt the state
     session.setAttribute(INK_STORY_STATE_KEY, "{junk}");
 
-    try
-    {
-      // this call should fail
-      taxiBot.respond(session, context, "136 River Road");
-      fail("Exception should have been thrown");
-    }
-    catch (BotException e)
-    {
-      // check that cause was BadInkStoryState
-      if (!e.getCause().getClass().equals(BadInkStoryState.class))
-      {
-        fail("BadInkStoryState exception expected");
-      }
-    }
-
+    BotException expected = assertThrows(BotException.class, () -> taxiBot.respond(session, context, "136 River Road"));
+    assertThat(expected).hasCauseThat().isInstanceOf(BadInkStoryState.class);
   }
 }

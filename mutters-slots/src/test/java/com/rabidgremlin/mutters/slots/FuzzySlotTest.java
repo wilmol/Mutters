@@ -3,7 +3,7 @@ package com.rabidgremlin.mutters.slots;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth8.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -77,61 +77,37 @@ class FuzzySlotTest
   @Test
   void testConstructWithArrayRejectsToleranceBelow10Percent()
   {
-    try
-    {
-      String[] options = { "optionA", "optionB" };
-      new FuzzySlot("fuzzy-slot", options, 0.09);
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 0.09");
-    }
+    String[] options = { "optionA", "optionB" };
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> new FuzzySlot("fuzzy-slot", options, 0.09));
+    assertThat(expected).hasMessageThat().isEqualTo("Invalid tolerance: 0.09");
   }
 
   @Test
   void testConstructWithListRejectsToleranceBelow10Percent()
   {
-    try
-    {
-      List<String> options = Arrays.asList("optionA", "optionB");
-      new FuzzySlot("fuzzy-slot", options, 0.09);
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 0.09");
-    }
+    List<String> options = Arrays.asList("optionA", "optionB");
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> new FuzzySlot("fuzzy-slot", options, 0.09));
+    assertThat(expected).hasMessageThat().isEqualTo("Invalid tolerance: 0.09");
   }
 
   @Test
   void testConstructWithArrayRejectsToleranceAbove100Percent()
   {
-    try
-    {
-      String[] options = { "optionA", "optionB" };
-      new FuzzySlot("fuzzy-slot", options, 1.01);
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 1.01");
-    }
+    String[] options = { "optionA", "optionB" };
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> new FuzzySlot("fuzzy-slot", options, 1.01));
+    assertThat(expected).hasMessageThat().isEqualTo("Invalid tolerance: 1.01");
   }
 
   @Test
   void testConstructWithListRejectsToleranceAbove100Percent()
   {
-    try
-    {
-      List<String> options = Arrays.asList("optionA", "optionB");
-      new FuzzySlot("fuzzy-slot", options, 1.01);
-      fail();
-    }
-    catch (IllegalArgumentException expected)
-    {
-      assertThat(expected.getMessage()).isEqualTo("Invalid tolerance: 1.01");
-    }
+    List<String> options = Arrays.asList("optionA", "optionB");
+    IllegalArgumentException expected = assertThrows(IllegalArgumentException.class,
+        () -> new FuzzySlot("fuzzy-slot", options, 1.01));
+    assertThat(expected).hasMessageThat().isEqualTo("Invalid tolerance: 1.01");
   }
 
   @Test
