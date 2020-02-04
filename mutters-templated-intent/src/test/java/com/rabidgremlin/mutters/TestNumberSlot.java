@@ -2,7 +2,6 @@
 package com.rabidgremlin.mutters;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +51,7 @@ class TestNumberSlot
     assertThat(result).isEqualTo(352261L);
 
     result = slot.wordStringToNumber("Three hundred and bad");
-    assertThat(result).isEqualTo(nullValue());
+    assertThat(result).isNull();
   }
 
   @Test
