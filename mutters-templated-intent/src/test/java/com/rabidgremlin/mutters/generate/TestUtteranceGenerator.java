@@ -3,16 +3,16 @@ package com.rabidgremlin.mutters.generate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class TestUtteranceGenerator
+class TestUtteranceGenerator
 {
   @Test
-  public void testGenerator()
+  void testGenerator()
   {
     UtteranceGenerator generator = new UtteranceGenerator();
 

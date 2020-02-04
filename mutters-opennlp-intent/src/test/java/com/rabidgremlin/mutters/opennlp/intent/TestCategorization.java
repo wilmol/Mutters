@@ -3,7 +3,7 @@ package com.rabidgremlin.mutters.opennlp.intent;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.net.URL;
 
@@ -11,13 +11,13 @@ import opennlp.tools.doccat.DoccatModel;
 import opennlp.tools.doccat.DocumentCategorizerME;
 import opennlp.tools.tokenize.WhitespaceTokenizer;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class TestCategorization
+class TestCategorization
 {
 
   @Test
-  public void testModelLoad() throws Exception
+  void testModelLoad() throws Exception
   {
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/en-cat-taxi-intents.bin");
     assertThat(modelUrl, is(notNullValue()));
@@ -27,7 +27,7 @@ public class TestCategorization
   }
 
   @Test
-  public void testCategorization() throws Exception
+  void testCategorization() throws Exception
   {
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/en-cat-taxi-intents.bin");
     assertThat(modelUrl, is(notNullValue()));

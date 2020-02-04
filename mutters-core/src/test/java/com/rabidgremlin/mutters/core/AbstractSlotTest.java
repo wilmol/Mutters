@@ -1,20 +1,20 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.core;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.Objects;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author wilmol
  */
-public class AbstractSlotTest
+class AbstractSlotTest
 {
   private static final class TestSlot extends AbstractSlot<String>
   {
@@ -31,21 +31,21 @@ public class AbstractSlotTest
   }
 
   @Test
-  public void testGetName()
+  void testGetName()
   {
     Slot<String> slot = new TestSlot("my-slot");
     assertThat(slot.getName(), is("my-slot"));
   }
 
   @Test
-  public void testToString()
+  void testToString()
   {
     Slot<String> slot = new TestSlot("my-slot");
     assertThat(slot.toString(), is("TestSlot [name=my-slot]"));
   }
 
   @Test
-  public void testEquals()
+  void testEquals()
   {
     Slot<String> slot = new TestSlot("my-slot");
     Slot<String> slotWithSameName = new TestSlot("my-slot");
@@ -55,7 +55,7 @@ public class AbstractSlotTest
   }
 
   @Test
-  public void testHashCode()
+  void testHashCode()
   {
     Slot<String> slot = new TestSlot("my-slot");
     assertEquals(slot.hashCode(), Objects.hash("my-slot"));

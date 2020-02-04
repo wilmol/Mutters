@@ -1,24 +1,24 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.core;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Created by wilmol on 2019-08-19 at 12:35.
  */
-public class CompoundSlotTest
+class CompoundSlotTest
 {
 
   private static final Slot<String> stringSlot = new Slot<String>()
@@ -67,7 +67,7 @@ public class CompoundSlotTest
   };
 
   @Test
-  public void canConstructWithSameType()
+  void canConstructWithSameType()
   {
     CompoundSlot<String> compoundSlot = new CompoundSlot<>("compound", stringSlot, stringSlot);
     Optional<SlotMatch<String>> match = compoundSlot.match("hi", null);
@@ -77,7 +77,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void canConstructWithDifferentTypes()
+  void canConstructWithDifferentTypes()
   {
     CompoundSlot<Number> compoundSlot = new CompoundSlot<>("compound", integerSlot, doubleSlot);
     Optional<SlotMatch<Number>> match = compoundSlot.match("123", null);
@@ -87,7 +87,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void mustTrySecondSlotIfFirstFailsToMatch()
+  void mustTrySecondSlotIfFirstFailsToMatch()
   {
     CompoundSlot<Number> compoundSlot = new CompoundSlot<>("compound", doubleSlot, integerSlot);
     Optional<SlotMatch<Number>> match = compoundSlot.match("123", null);
@@ -97,7 +97,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void testComposeStaticFactoryVarargs()
+  void testComposeStaticFactoryVarargs()
   {
     Slot<?> composed = CompoundSlot.compose("composed", doubleSlot, integerSlot, stringSlot);
     assertNotNull(composed);
@@ -108,7 +108,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void testComposeStaticFactoryArray()
+  void testComposeStaticFactoryArray()
   {
     Slot<?>[] slots = { doubleSlot, integerSlot, stringSlot };
     Slot<?> composed = CompoundSlot.compose("composed", slots);
@@ -120,7 +120,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void testComposeStaticFactoryList()
+  void testComposeStaticFactoryList()
   {
     List<Slot<?>> slots = Arrays.asList(doubleSlot, integerSlot, stringSlot);
     Slot<?> composed = CompoundSlot.compose("composed", slots);
@@ -132,7 +132,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void testComposeStaticFactoryRejectsEmptyVarargs()
+  void testComposeStaticFactoryRejectsEmptyVarargs()
   {
     try
     {
@@ -146,7 +146,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void testComposeStaticFactoryRejectsEmptyArray()
+  void testComposeStaticFactoryRejectsEmptyArray()
   {
     try
     {
@@ -161,7 +161,7 @@ public class CompoundSlotTest
   }
 
   @Test
-  public void testComposeStaticFactoryRejectsEmptyList()
+  void testComposeStaticFactoryRejectsEmptyList()
   {
     try
     {

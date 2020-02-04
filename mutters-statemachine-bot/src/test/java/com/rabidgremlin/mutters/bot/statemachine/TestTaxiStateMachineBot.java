@@ -3,28 +3,28 @@ package com.rabidgremlin.mutters.bot.statemachine;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.bot.BotException;
 import com.rabidgremlin.mutters.core.bot.BotResponse;
 import com.rabidgremlin.mutters.core.session.Session;
 
-public class TestTaxiStateMachineBot
+class TestTaxiStateMachineBot
 {
   private static TaxiStateMachineBot taxiBot;
 
-  @BeforeClass
-  public static void setUpBot()
+  @BeforeAll
+  static void setUpBot()
   {
     taxiBot = new TaxiStateMachineBot(new TaxiStateMachineBotConfiguration());
   }
 
   @Test
-  public void testOrderTaxiWithAddress() throws BotException
+  void testOrderTaxiWithAddress() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -37,7 +37,7 @@ public class TestTaxiStateMachineBot
   }
 
   @Test
-  public void testOrderTaxiWithOutAddress() throws BotException
+  void testOrderTaxiWithOutAddress() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -56,7 +56,7 @@ public class TestTaxiStateMachineBot
   }
 
   @Test
-  public void testCancelTaxi() throws BotException
+  void testCancelTaxi() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -69,7 +69,7 @@ public class TestTaxiStateMachineBot
   }
 
   @Test
-  public void testTaxiStatus() throws BotException
+  void testTaxiStatus() throws BotException
   {
     Session session = new Session();
     Context context = new Context();

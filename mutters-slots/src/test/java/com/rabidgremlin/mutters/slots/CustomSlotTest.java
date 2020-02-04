@@ -3,25 +3,25 @@ package com.rabidgremlin.mutters.slots;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.SlotMatch;
 
 /**
  * @author wilmol
  */
-public class CustomSlotTest
+class CustomSlotTest
 {
 
   @Test
-  public void testConstructWithVarargs()
+  void testConstructWithVarargs()
   {
     CustomSlot customSlot = new CustomSlot("custom-slot", "optionA", "optionB");
 
@@ -34,7 +34,7 @@ public class CustomSlotTest
   }
 
   @Test
-  public void testConstructWithList()
+  void testConstructWithList()
   {
     CustomSlot customSlot = new CustomSlot("custom-slot", Arrays.asList("optionA", "optionB"));
 
@@ -47,7 +47,7 @@ public class CustomSlotTest
   }
 
   @Test
-  public void testConstructWithMap()
+  void testConstructWithMap()
   {
     Map<String, String> map = new HashMap<>();
     map.put("keyA", "valueA");
@@ -63,7 +63,7 @@ public class CustomSlotTest
   }
 
   @Test
-  public void testToStringConstructedWithList()
+  void testToStringConstructedWithList()
   {
     CustomSlot customSlot = new CustomSlot("custom-slot", Arrays.asList("ABC", "xyz"));
 
@@ -71,7 +71,7 @@ public class CustomSlotTest
   }
 
   @Test
-  public void testToStringConstructedWithMap()
+  void testToStringConstructedWithMap()
   {
     Map<String, String> map = new HashMap<>();
     map.put("keyA", "valueA");

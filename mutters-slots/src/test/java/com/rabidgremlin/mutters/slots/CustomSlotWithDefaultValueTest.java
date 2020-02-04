@@ -3,7 +3,7 @@ package com.rabidgremlin.mutters.slots;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,18 +11,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.SlotMatch;
 
 /**
  * @author wilmol
  */
-public class CustomSlotWithDefaultValueTest
+class CustomSlotWithDefaultValueTest
 {
 
   @Test
-  public void testConstructWithArray()
+  void testConstructWithArray()
   {
     String[] options = { "optionA", "optionB" };
     CustomSlotWithDefaultValue customSlot = new CustomSlotWithDefaultValue("custom-slot", options, "defaultValue");
@@ -37,7 +37,7 @@ public class CustomSlotWithDefaultValueTest
   }
 
   @Test
-  public void testConstructWithList()
+  void testConstructWithList()
   {
     List<String> options = Arrays.asList("optionA", "optionB");
     CustomSlotWithDefaultValue customSlot = new CustomSlotWithDefaultValue("custom-slot", options, "defaultValue");
@@ -52,7 +52,7 @@ public class CustomSlotWithDefaultValueTest
   }
 
   @Test
-  public void testConstructWithMap()
+  void testConstructWithMap()
   {
     Map<String, String> options = new HashMap<>();
     options.put("keyA", "valueA");
@@ -69,7 +69,7 @@ public class CustomSlotWithDefaultValueTest
   }
 
   @Test
-  public void testToStringConstructedWithList()
+  void testToStringConstructedWithList()
   {
     List<String> options = Arrays.asList("optionA", "optionB");
     CustomSlotWithDefaultValue customSlot = new CustomSlotWithDefaultValue("custom-slot", options, "defaultValue");
@@ -78,7 +78,7 @@ public class CustomSlotWithDefaultValueTest
   }
 
   @Test
-  public void testToStringConstructedWithMap()
+  void testToStringConstructedWithMap()
   {
     Map<String, String> options = new HashMap<>();
     options.put("keyA", "valueA");

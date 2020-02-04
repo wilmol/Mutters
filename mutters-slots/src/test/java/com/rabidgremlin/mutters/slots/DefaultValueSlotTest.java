@@ -1,14 +1,14 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.slots;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.SlotMatch;
@@ -16,11 +16,11 @@ import com.rabidgremlin.mutters.core.SlotMatch;
 /**
  * @author wilmol
  */
-public class DefaultValueSlotTest
+class DefaultValueSlotTest
 {
 
   @Test
-  public void testDefaultStringSlot()
+  void testDefaultStringSlot()
   {
     DefaultValueSlot<String> defaultValueSlot = new DefaultValueSlot.DefaultStringSlot()
     {
@@ -41,7 +41,7 @@ public class DefaultValueSlotTest
   }
 
   @Test
-  public void testDefaultNumberSlot()
+  void testDefaultNumberSlot()
   {
     DefaultValueSlot<Number> defaultValueSlot = new DefaultValueSlot.DefaultNumberSlot()
     {
@@ -62,7 +62,7 @@ public class DefaultValueSlotTest
   }
 
   @Test
-  public void testDefaultLongSlot()
+  void testDefaultLongSlot()
   {
     DefaultValueSlot<Long> defaultValueSlot = new DefaultValueSlot.DefaultLongSlot()
     {
@@ -83,7 +83,7 @@ public class DefaultValueSlotTest
   }
 
   @Test
-  public void testDefaultIntegerSlot()
+  void testDefaultIntegerSlot()
   {
     DefaultValueSlot<Integer> defaultValueSlot = new DefaultValueSlot.DefaultIntegerSlot()
     {
@@ -104,7 +104,7 @@ public class DefaultValueSlotTest
   }
 
   @Test
-  public void testDefaultDoubleSlot()
+  void testDefaultDoubleSlot()
   {
     DefaultValueSlot<Double> defaultValueSlot = new DefaultValueSlot.DefaultDoubleSlot()
     {
@@ -125,7 +125,7 @@ public class DefaultValueSlotTest
   }
 
   @Test
-  public void testDefaultDateSlot()
+  void testDefaultDateSlot()
   {
     DefaultValueSlot<LocalDate> defaultValueSlot = new DefaultValueSlot.DefaultDateSlot()
     {
@@ -146,7 +146,7 @@ public class DefaultValueSlotTest
   }
 
   @Test
-  public void testDefaultTimeSlot()
+  void testDefaultTimeSlot()
   {
     DefaultValueSlot<LocalTime> defaultValueSlot = new DefaultValueSlot.DefaultTimeSlot()
     {

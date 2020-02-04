@@ -3,13 +3,13 @@ package com.rabidgremlin.mutters.bot.ink;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.IntentMatcher;
@@ -24,7 +24,7 @@ import com.rabidgremlin.mutters.templated.TemplatedIntentMatcher;
  * @author rabidgremlin
  *
  */
-public class TestDefaultResponses
+class TestDefaultResponses
 {
   private InkBot<BotWithDefaultDefaultResponses> testBotWithDefaultDefaultPhrases;
   private InkBot<BotWithDefaultDefaultResponses> testBotWithTestDefaultPhrases;
@@ -77,27 +77,27 @@ public class TestDefaultResponses
     @Override
     public RepromptGenerator getRepromptGenerator()
     {
-      return new DefaultResponseRepromptGenerator(new String[] { "Response A", "Response B", "Response C" });
+      return new DefaultResponseRepromptGenerator("Response A", "Response B", "Response C");
     }
   }
 
   static class TestBot extends InkBot<BotWithDefaultDefaultResponses>
   {
-    public TestBot(BotWithDefaultDefaultResponses configuration)
+    TestBot(BotWithDefaultDefaultResponses configuration)
     {
       super(configuration);
     }
   }
 
-  @Before
-  public void setUpBot()
+  @BeforeEach
+  void setUpBot()
   {
     testBotWithDefaultDefaultPhrases = new TestBot(new BotWithDefaultDefaultResponses());
     testBotWithTestDefaultPhrases = new TestBot(new BotWithTestDefaultResponses());
   }
 
   @Test
-  public void testDefaultDefaultResponse() throws Exception
+  void testDefaultDefaultResponse() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -110,7 +110,7 @@ public class TestDefaultResponses
   }
 
   @Test
-  public void testCustomDefaultResponse() throws Exception
+  void testCustomDefaultResponse() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -142,9 +142,9 @@ public class TestDefaultResponses
       }
     }
 
-    assertTrue("Did not get any Response As", responseACount > 0);
-    assertTrue("Did not get any Response Bs", responseBCount > 0);
-    assertTrue("Did not get any Response Cs", responseCCount > 0);
+    assertTrue(responseACount > 0);
+    assertTrue(responseBCount > 0);
+    assertTrue(responseCCount > 0);
   }
 
 }

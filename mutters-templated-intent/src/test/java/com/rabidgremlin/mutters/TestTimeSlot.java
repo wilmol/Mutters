@@ -3,12 +3,12 @@ package com.rabidgremlin.mutters;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.time.LocalTime;
 import java.util.TimeZone;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.SlotMatch;
@@ -18,12 +18,12 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 import com.rabidgremlin.mutters.templated.TemplatedUtterance;
 import com.rabidgremlin.mutters.templated.TemplatedUtteranceMatch;
 
-public class TestTimeSlot
+class TestTimeSlot
 {
   private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
-  public void testBasicMatch()
+  void testBasicMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("at {time}"));
 
@@ -47,7 +47,7 @@ public class TestTimeSlot
   }
 
   @Test
-  public void testMatchWithTimeZone()
+  void testMatchWithTimeZone()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("at {time}"));
 

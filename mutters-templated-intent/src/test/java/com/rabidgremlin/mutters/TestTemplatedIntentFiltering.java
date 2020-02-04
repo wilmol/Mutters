@@ -3,12 +3,12 @@ package com.rabidgremlin.mutters;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.HashSet;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.IntentMatch;
@@ -16,13 +16,13 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 import com.rabidgremlin.mutters.templated.TemplatedIntent;
 import com.rabidgremlin.mutters.templated.TemplatedIntentMatcher;
 
-public class TestTemplatedIntentFiltering
+class TestTemplatedIntentFiltering
 {
   private final SimpleTokenizer tokenizer = new SimpleTokenizer();
-  TemplatedIntentMatcher matcher;
+  private TemplatedIntentMatcher matcher;
 
-  @Before
-  public void setUpMatcher()
+  @BeforeEach
+  void setUpMatcher()
   {
     matcher = new TemplatedIntentMatcher(tokenizer);
 
@@ -37,7 +37,7 @@ public class TestTemplatedIntentFiltering
   }
 
   @Test
-  public void testNoFiltering()
+  void testNoFiltering()
   {
     // should match on hello intent
     IntentMatch intentMatch = matcher.match("hello", new Context(), null);
@@ -55,7 +55,7 @@ public class TestTemplatedIntentFiltering
   }
 
   @Test
-  public void testFiltering()
+  void testFiltering()
   {
     HashSet<String> expectedIntents = new HashSet<>();
     expectedIntents.add("HelloIntent");

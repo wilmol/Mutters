@@ -3,14 +3,14 @@ package com.rabidgremlin.mutters.core.session;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class TestSession
+class TestSession
 {
   @Test
-  public void testAttributeLifeCycle()
+  void testAttributeLifeCycle()
   {
     Session session = new Session();
 
@@ -22,7 +22,7 @@ public class TestSession
   }
 
   @Test
-  public void testLongTermAttributeLifeCycle()
+  void testLongTermAttributeLifeCycle()
   {
     Session session = new Session();
 
@@ -34,7 +34,7 @@ public class TestSession
   }
 
   @Test
-  public void testReset()
+  void testReset()
   {
     Session session = new Session();
 
@@ -48,7 +48,7 @@ public class TestSession
   }
 
   @Test
-  public void testResetAll()
+  void testResetAll()
   {
     Session session = new Session();
 

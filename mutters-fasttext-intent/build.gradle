@@ -21,7 +21,7 @@ dependencies {
     compile "com.github.vinhkhuc:jfasttext:$jFastTextVersion"
     compile "commons-io:commons-io:$commonsIoVersion"
         
-    testCompile "junit:junit:$junitVersion"
+    testCompile "org.junit.jupiter:junit-jupiter:$junitVersion"
     testCompile "org.slf4j:slf4j-api:$slf4jVersion"
     testCompile "org.hamcrest:hamcrest-all:$hamcrestAllVersion"
     testCompile "org.mockito:mockito-core:$mockitoVersion"

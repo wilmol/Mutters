@@ -1,27 +1,27 @@
 /* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.slots;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.SlotMatch;
 
 /**
  * @author wilmol
  */
-public class FuzzySlotTest
+class FuzzySlotTest
 {
 
   @Test
-  public void testConstructWithArrayDefaultTolerance()
+  void testConstructWithArrayDefaultTolerance()
   {
     FuzzySlot fuzzySlot = new FuzzySlot("fuzzy-slot", "optionA", "optionB");
 
@@ -34,7 +34,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testConstructWithListDefaultTolerance()
+  void testConstructWithListDefaultTolerance()
   {
     List<String> options = Arrays.asList("optionA", "optionB");
     FuzzySlot fuzzySlot = new FuzzySlot("fuzzy-slot", options);
@@ -48,7 +48,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testConstructWithArrayCustomTolerance()
+  void testConstructWithArrayCustomTolerance()
   {
     String[] options = { "optionA", "optionB" };
     FuzzySlot fuzzySlot = new FuzzySlot("fuzzy-slot", options, 0.99);
@@ -62,7 +62,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testConstructWithListCustomTolerance()
+  void testConstructWithListCustomTolerance()
   {
     List<String> options = Arrays.asList("optionA", "optionB");
     FuzzySlot fuzzySlot = new FuzzySlot("fuzzy-slot", options, 0.99);
@@ -76,7 +76,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testConstructWithArrayRejectsToleranceBelow10Percent()
+  void testConstructWithArrayRejectsToleranceBelow10Percent()
   {
     try
     {
@@ -91,7 +91,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testConstructWithListRejectsToleranceBelow10Percent()
+  void testConstructWithListRejectsToleranceBelow10Percent()
   {
     try
     {
@@ -106,7 +106,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testConstructWithArrayRejectsToleranceAbove100Percent()
+  void testConstructWithArrayRejectsToleranceAbove100Percent()
   {
     try
     {
@@ -121,7 +121,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testConstructWithListRejectsToleranceAbove100Percent()
+  void testConstructWithListRejectsToleranceAbove100Percent()
   {
     try
     {
@@ -136,7 +136,7 @@ public class FuzzySlotTest
   }
 
   @Test
-  public void testToString()
+  void testToString()
   {
     List<String> options = Arrays.asList("optionA", "optionB");
     FuzzySlot fuzzySlot = new FuzzySlot("fuzzy-slot", options);

@@ -3,11 +3,11 @@ package com.rabidgremlin.mutters;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.SlotMatch;
@@ -18,12 +18,12 @@ import com.rabidgremlin.mutters.templated.TemplatedIntent;
 import com.rabidgremlin.mutters.templated.TemplatedUtterance;
 import com.rabidgremlin.mutters.templated.TemplatedUtteranceMatch;
 
-public class TestUtterance
+class TestUtterance
 {
   private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
-  public void testSimpleMatch()
+  void testSimpleMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("What's the time"));
 
@@ -39,7 +39,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testSimpleNotMatch()
+  void testSimpleNotMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("This is that and that is this"));
 
@@ -53,7 +53,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testSimpleSlotMatch()
+  void testSimpleSlotMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("I like {Color}"));
 
@@ -79,7 +79,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testSimpleNotSlotMatch()
+  void testSimpleNotSlotMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("I like {Color}"));
 
@@ -103,7 +103,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testMultiSlotMatch()
+  void testMultiSlotMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("I like {Color} and {Food}"));
 
@@ -135,7 +135,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testMultiSlotNotMatch()
+  void testMultiSlotNotMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("I like {Color} and {Food}"));
 
@@ -157,7 +157,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testMultiWordSlotMatch()
+  void testMultiWordSlotMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("What is the time in {City}"));
 
@@ -182,7 +182,7 @@ public class TestUtterance
 
   // TODO refactor out to a separate Intent test class
   @Test
-  public void testSingleWordMatch()
+  void testSingleWordMatch()
   {
     TemplatedIntent intent = new TemplatedIntent("YesIntent", tokenizer);
 
@@ -204,7 +204,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testMultiSlotGreedyMatch()
+  void testMultiSlotGreedyMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("I like {Color} and {Food}"));
 
@@ -236,7 +236,7 @@ public class TestUtterance
   }
 
   @Test
-  public void testSlotOnlyMatch()
+  void testSlotOnlyMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("{City} {Color} {Food}"));
 
@@ -275,7 +275,7 @@ public class TestUtterance
   }
 
   @Test
-  public void shouldReturnCompleteListOfExpectedSlots()
+  void shouldReturnCompleteListOfExpectedSlots()
   {
     TemplatedUtterance teplatedUtterance = new TemplatedUtterance(
         tokenizer.tokenize("I like {Color} and {Food} and {color} food"));

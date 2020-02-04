@@ -5,9 +5,9 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.bot.ink.functions.orderbot.OrderInkBot;
 import com.rabidgremlin.mutters.bot.ink.functions.orderbot.OrderInkBotConfiguration;
@@ -15,12 +15,12 @@ import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.bot.BotResponse;
 import com.rabidgremlin.mutters.core.session.Session;
 
-public class TestRepromptQuickRepliesAndHint
+class TestRepromptQuickRepliesAndHint
 {
   private static final OrderInkBot orderBot = new OrderInkBot(new OrderInkBotConfiguration());
 
   @Test
-  public void givenFailedMatchShouldIncludeRepromptHintQuickRelies() throws Exception
+  void givenFailedMatchShouldIncludeRepromptHintQuickRelies() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -52,7 +52,7 @@ public class TestRepromptQuickRepliesAndHint
   }
 
   @Test
-  public void givenFailedMatchShouldClearRepromptHintQuickReliesAfterSuccessfulMatch() throws Exception
+  void givenFailedMatchShouldClearRepromptHintQuickReliesAfterSuccessfulMatch() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -83,7 +83,7 @@ public class TestRepromptQuickRepliesAndHint
   }
 
   @Test
-  public void givenNoMatchingPhraseAtStartOfConversationShouldReturnDefaultResponse() throws Exception
+  void givenNoMatchingPhraseAtStartOfConversationShouldReturnDefaultResponse() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -97,8 +97,7 @@ public class TestRepromptQuickRepliesAndHint
   }
 
   @Test
-  public void givenNoMatchingPhraseWhenNoRepromptAvailableShouldReturnDefaultResponsePlusOrginalPrompt()
-      throws Exception
+  void givenNoMatchingPhraseWhenNoRepromptAvailableShouldReturnDefaultResponsePlusOrginalPrompt() throws Exception
   {
     Session session = new Session();
     Context context = new Context();

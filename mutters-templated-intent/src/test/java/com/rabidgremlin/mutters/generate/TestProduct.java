@@ -3,17 +3,17 @@ package com.rabidgremlin.mutters.generate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class TestProduct
+class TestProduct
 {
   @Test
-  public void testProduct()
+  void testProduct()
   {
     List<String> list1 = Arrays.asList("A", "B");
     List<String> list2 = Arrays.asList("1", "2", "3");

@@ -2,11 +2,11 @@
 package com.rabidgremlin.mutters.bot.ink;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.bot.BotException;
@@ -27,20 +27,20 @@ import com.rabidgremlin.mutters.core.session.Session;
  * and raise a BadInkStoryState.
  *
  */
-public class TestSessionRestore
+class TestSessionRestore
 {
   private static SessionRestoreTestBot storyThreeBot;
   private static SessionRestoreTestBot storyNewBot;
 
-  @BeforeClass
-  public static void setUpBot()
+  @BeforeAll
+  static void setUpBot()
   {
     storyThreeBot = new SessionRestoreTestBot(new SessionRestoreTestBotConfiguration("story_three_options.ink.json"));
     storyNewBot = new SessionRestoreTestBot(new SessionRestoreTestBotConfiguration("story_new_option.ink.json"));
   }
 
   @Test
-  public void testSessionRestoreWhenStoryOptionsChange() throws BotException
+  void testSessionRestoreWhenStoryOptionsChange() throws BotException
   {
     Session session = new Session();
     Context context = new Context();

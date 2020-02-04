@@ -4,9 +4,10 @@ package com.rabidgremlin.mutters.bot.ink.functions;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for parsing of function strings.
@@ -14,11 +15,11 @@ import org.junit.Test;
  * @author rabidgremlin
  *
  */
-public class TestFunctionHelper
+class TestFunctionHelper
 {
 
   @Test
-  public void testParameterParsing() throws Exception
+  void testParameterParsing()
   {
     FunctionDetails details = FunctionHelper
         .parseFunctionString("type::link url::https:\\\\/\\\\/en.wikipedia.org/wiki/Chatbot title::Here is the link");
@@ -35,7 +36,7 @@ public class TestFunctionHelper
   }
 
   @Test
-  public void testParameterParsingValueWithSpaces() throws Exception
+  void testParameterParsingValueWithSpaces() throws Exception
   {
     FunctionDetails details = FunctionHelper
         .parseFunctionString("title::Here is the link type::link url::https:\\\\/\\\\/en.wikipedia.org/wiki/Chatbot ");
@@ -52,7 +53,7 @@ public class TestFunctionHelper
   }
 
   @Test
-  public void testParameterNoParams()
+  void testParameterNoParams()
   {
     FunctionDetails details = FunctionHelper.parseFunctionString(" dd/mm or next friday ");
 
@@ -63,10 +64,10 @@ public class TestFunctionHelper
     assertThat(details.getFunctionParams(), is(nullValue()));
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void testBadParams() throws Exception
+  @Test
+  void testBadParams()
   {
-    FunctionHelper.parseFunctionString("junk::ob:::");
+    assertThrows(IllegalArgumentException.class, () -> FunctionHelper.parseFunctionString("junk::ob:::"));
   }
 
 }

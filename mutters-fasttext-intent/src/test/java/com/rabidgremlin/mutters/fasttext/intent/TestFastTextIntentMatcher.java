@@ -3,13 +3,13 @@ package com.rabidgremlin.mutters.fasttext.intent;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.mock;
 
 import java.net.URL;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.Intent;
@@ -19,12 +19,12 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 
 // based on training data from https://github.com/mlehman/nlp-intent-toolkit
 
-public class TestFastTextIntentMatcher
+class TestFastTextIntentMatcher
 {
   private static FastTextIntentMatcher intentMatcher;
 
-  @BeforeClass
-  public static void setUp()
+  @BeforeAll
+  static void setUp()
   {
     SlotMatcher slotMatcher = mock(SlotMatcher.class);
 
@@ -44,7 +44,7 @@ public class TestFastTextIntentMatcher
   }
 
   @Test
-  public void testMatchingOfPhraseInTestData()
+  void testMatchingOfPhraseInTestData()
   {
     Context context = new Context();
     IntentMatch intentMatch = intentMatcher.match("how hot is it", context, null);
@@ -57,7 +57,7 @@ public class TestFastTextIntentMatcher
   }
 
   @Test
-  public void testBasicMatching()
+  void testBasicMatching()
   {
     Context context = new Context();
     IntentMatch intentMatch = intentMatcher.match("will it rain tomorrow", context, null);
@@ -70,7 +70,7 @@ public class TestFastTextIntentMatcher
   }
 
   @Test
-  public void testNoMatch()
+  void testNoMatch()
   {
     Context context = new Context();
     IntentMatch intentMatch = intentMatcher.match("the hovercraft is full of eels", context, null);

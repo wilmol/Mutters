@@ -4,19 +4,19 @@ package com.rabidgremlin.mutters.bot.ink;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.startsWith;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.bot.BotException;
 import com.rabidgremlin.mutters.core.bot.BotResponse;
 import com.rabidgremlin.mutters.core.session.Session;
 
-public class TestConfusedBot
+class TestConfusedBot
 {
   private TaxiInkBot botWithConfusedKnot;
   private TaxiInkBot botWithoutConfusedKnot;
@@ -49,8 +49,8 @@ public class TestConfusedBot
     }
   }
 
-  @Before
-  public void setUp()
+  @BeforeEach
+  void setUp()
   {
     botWithConfusedKnot = new TaxiInkBot(new TaxiBotWithConfusedKnotConfig());
     botWithoutConfusedKnot = new TaxiInkBot(new TaxiBotWithoutConfusedKnotConfig());
@@ -58,7 +58,7 @@ public class TestConfusedBot
   }
 
   @Test
-  public void testNoConfusedKnot() throws BotException
+  void testNoConfusedKnot() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -95,7 +95,7 @@ public class TestConfusedBot
   }
 
   @Test
-  public void testBasicConfusedKnot() throws BotException
+  void testBasicConfusedKnot() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -120,7 +120,7 @@ public class TestConfusedBot
   }
 
   @Test
-  public void testStopConfusion() throws BotException
+  void testStopConfusion() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -145,7 +145,7 @@ public class TestConfusedBot
   }
 
   @Test
-  public void testConfusedKnotWithReprompts() throws BotException
+  void testConfusedKnotWithReprompts() throws BotException
   {
     Session session = new Session();
     Context context = new Context();

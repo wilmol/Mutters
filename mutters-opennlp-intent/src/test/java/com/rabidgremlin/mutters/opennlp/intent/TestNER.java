@@ -3,7 +3,7 @@ package com.rabidgremlin.mutters.opennlp.intent;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.net.URL;
 
@@ -12,13 +12,13 @@ import opennlp.tools.namefind.TokenNameFinderModel;
 import opennlp.tools.tokenize.SimpleTokenizer;
 import opennlp.tools.util.Span;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class TestNER
+class TestNER
 {
 
   @Test
-  public void testModelLoad() throws Exception
+  void testModelLoad() throws Exception
   {
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/en-ner-persons.bin");
     assertThat(modelUrl, is(notNullValue()));
@@ -28,7 +28,7 @@ public class TestNER
   }
 
   @Test
-  public void testPersonNER() throws Exception
+  void testPersonNER() throws Exception
   {
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/en-ner-persons.bin");
     assertThat(modelUrl, is(notNullValue()));
@@ -51,7 +51,7 @@ public class TestNER
   }
 
   @Test
-  public void testLocationNER() throws Exception
+  void testLocationNER() throws Exception
   {
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/en-ner-locations.bin");
     assertThat(modelUrl, is(notNullValue()));
@@ -74,7 +74,7 @@ public class TestNER
   }
 
   @Test
-  public void testDateNER() throws Exception
+  void testDateNER() throws Exception
   {
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/en-ner-dates.bin");
     assertThat(modelUrl, is(notNullValue()));
@@ -96,7 +96,7 @@ public class TestNER
   }
 
   @Test
-  public void testAddressNER() throws Exception
+  void testAddressNER() throws Exception
   {
     URL modelUrl = Thread.currentThread().getContextClassLoader().getResource("models/en-ner-address.bin");
     assertThat(modelUrl, is(notNullValue()));

@@ -2,17 +2,17 @@
 package com.rabidgremlin.mutters.core;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.OptionalDouble;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class TestMatcherScores
+class TestMatcherScores
 {
 
   @Test
-  public void shouldBeEmptyIfCreatedWithNoScores()
+  void shouldBeEmptyIfCreatedWithNoScores()
   {
     MatcherScores emptyScores = new MatcherScores();
     assertThat(emptyScores.isEmpty(), is(true));
@@ -22,7 +22,7 @@ public class TestMatcherScores
   }
 
   @Test
-  public void shouldReturnTheBestScore()
+  void shouldReturnTheBestScore()
   {
     MatcherScores scores = new MatcherScores();
 
@@ -36,7 +36,7 @@ public class TestMatcherScores
   }
 
   @Test
-  public void shouldHandleMultipleIntentsForScore()
+  void shouldHandleMultipleIntentsForScore()
   {
     MatcherScores scores = new MatcherScores();
 
@@ -51,7 +51,7 @@ public class TestMatcherScores
   }
 
   @Test
-  public void shouldSortIntentsForSameScore()
+  void shouldSortIntentsForSameScore()
   {
     MatcherScores scores = new MatcherScores();
 

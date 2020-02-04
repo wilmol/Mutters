@@ -4,12 +4,12 @@ package com.rabidgremlin.mutters;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.SortedMap;
 import java.util.SortedSet;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.IntentMatch;
@@ -22,12 +22,12 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 import com.rabidgremlin.mutters.templated.TemplatedIntent;
 import com.rabidgremlin.mutters.templated.TemplatedIntentMatcher;
 
-public class TestIntentMatcher
+class TestIntentMatcher
 {
   private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
-  public void testBasicMatching()
+  void testBasicMatching()
   {
     TemplatedIntentMatcher matcher = new TemplatedIntentMatcher(tokenizer);
     TemplatedIntent additionIntent = matcher.addIntent("Addition");
@@ -60,7 +60,7 @@ public class TestIntentMatcher
   }
 
   @Test
-  public void testBrokenMatch()
+  void testBrokenMatch()
   {
     TemplatedIntentMatcher matcher = new TemplatedIntentMatcher(tokenizer);
     TemplatedIntent intent = matcher.addIntent("Hello");
@@ -76,7 +76,7 @@ public class TestIntentMatcher
   }
 
   @Test
-  public void testBrokenAirportMatch()
+  void testBrokenAirportMatch()
   {
     TemplatedIntentMatcher matcher = new TemplatedIntentMatcher(tokenizer);
     TemplatedIntent intent = matcher.addIntent("GetAirport");
@@ -93,7 +93,7 @@ public class TestIntentMatcher
   }
 
   @Test
-  public void testHandlingOfEmptyOrTokenizedOutInputs()
+  void testHandlingOfEmptyOrTokenizedOutInputs()
   {
     TemplatedIntentMatcher matcher = new TemplatedIntentMatcher(tokenizer);
     TemplatedIntent intent = matcher.addIntent("AcceptAnything");
@@ -130,7 +130,7 @@ public class TestIntentMatcher
   // slot that matches a colour or defaults to black
   static class ColorsSlot extends CustomSlot implements DefaultValueSlot<String>
   {
-    public ColorsSlot()
+    ColorsSlot()
     {
       super("Color", "Red", "Green", "Blue", "White");
     }
@@ -143,7 +143,7 @@ public class TestIntentMatcher
   }
 
   @Test
-  public void testDefaultValueHandling()
+  void testDefaultValueHandling()
   {
     TemplatedIntentMatcher matcher = new TemplatedIntentMatcher(tokenizer);
 
@@ -181,7 +181,7 @@ public class TestIntentMatcher
   }
 
   @Test
-  public void testThatScoringIsReturnedForSuccessfulMatch()
+  void testThatScoringIsReturnedForSuccessfulMatch()
   {
     TemplatedIntentMatcher matcher = new TemplatedIntentMatcher(tokenizer);
     TemplatedIntent intent = matcher.addIntent("Hello");

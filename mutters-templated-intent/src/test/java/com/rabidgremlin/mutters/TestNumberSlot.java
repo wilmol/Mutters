@@ -4,9 +4,9 @@ package com.rabidgremlin.mutters;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.SlotMatch;
@@ -16,12 +16,12 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 import com.rabidgremlin.mutters.templated.TemplatedUtterance;
 import com.rabidgremlin.mutters.templated.TemplatedUtteranceMatch;
 
-public class TestNumberSlot
+class TestNumberSlot
 {
   private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
-  public void testBasicWordMatch()
+  void testBasicWordMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("The balance is {number}"));
 
@@ -45,7 +45,7 @@ public class TestNumberSlot
   }
 
   @Test
-  public void testWordStringToNumber()
+  void testWordStringToNumber()
   {
     NumberSlot slot = new NumberSlot("test");
     Number result = slot.wordStringToNumber("Three hundred fifty two thousand two hundred and sixty one");
@@ -58,7 +58,7 @@ public class TestNumberSlot
   }
 
   @Test
-  public void testBasicNumberMatch()
+  void testBasicNumberMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("The balance is {number}"));
 
@@ -82,7 +82,7 @@ public class TestNumberSlot
   }
 
   @Test
-  public void testBasicDecimalMatch()
+  void testBasicDecimalMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("The balance is {number}"));
 

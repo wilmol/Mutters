@@ -3,9 +3,9 @@ package com.rabidgremlin.mutters.core;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,9 +16,9 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.function.BinaryOperator;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class CompoundIntentMatcherTest
+class CompoundIntentMatcherTest
 {
 
   /**
@@ -92,7 +92,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void shouldIgnoreSecondMatcherIfFirstMatcherMatches()
+  void shouldIgnoreSecondMatcherIfFirstMatcherMatches()
   {
     AlwaysMatcher alwaysMatcher = new AlwaysMatcher();
     NeverMatcher neverMatcher = new NeverMatcher();
@@ -106,7 +106,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void shouldUseSecondMatcherIfFirstFailsToMatch()
+  void shouldUseSecondMatcherIfFirstFailsToMatch()
   {
     AlwaysMatcher alwaysMatcher = new AlwaysMatcher();
     NeverMatcher neverMatcher = new NeverMatcher();
@@ -120,7 +120,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void shouldReturnNoMatchIfBothMatchersFail()
+  void shouldReturnNoMatchIfBothMatchersFail()
   {
     NeverMatcher neverMatcher1 = new NeverMatcher();
     NeverMatcher neverMatcher2 = new NeverMatcher();
@@ -134,7 +134,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void shouldReturnOnlyMatchedScoresIfLastMatcherMatches()
+  void shouldReturnOnlyMatchedScoresIfLastMatcherMatches()
   {
     // Given
     AbcNeverMatcher abcMatcher = new AbcNeverMatcher();
@@ -151,7 +151,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void shouldReturnOnlyMatchedScoresIfFirstMatcherMatches()
+  void shouldReturnOnlyMatchedScoresIfFirstMatcherMatches()
   {
     // Given
     AlwaysMatcher alwaysMatcher = new AlwaysMatcher();
@@ -168,7 +168,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testComposeMoreThan2Matchers()
+  void testComposeMoreThan2Matchers()
   {
     // Given
     AlwaysMatcher alwaysMatcher = new AlwaysMatcher();
@@ -186,7 +186,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testComposeMoreThan2MatchersWithCustomNoMatchScoreMergingBehaviour()
+  void testComposeMoreThan2MatchersWithCustomNoMatchScoreMergingBehaviour()
   {
     // Given
     AbcNeverMatcher abcMatcher = new AbcNeverMatcher();
@@ -206,7 +206,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testConstructWithListOfMatchers()
+  void testConstructWithListOfMatchers()
   {
     // Given
     List<IntentMatcher> intentMatchers = Arrays.asList(new AbcNeverMatcher(), new AbdNeverMatcher(),
@@ -223,7 +223,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testConstructWithArrayOfMatchers()
+  void testConstructWithArrayOfMatchers()
   {
     // Given
     IntentMatcher[] intentMatchers = { new AbcNeverMatcher(), new AbdNeverMatcher(), new AlwaysMatcher() };
@@ -239,7 +239,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testConstructWithListOfMatchersCustomNoMatchMergeStrategy()
+  void testConstructWithListOfMatchersCustomNoMatchMergeStrategy()
   {
     // Given
     List<IntentMatcher> intentMatchers = Arrays.asList(new AbcNeverMatcher(), new AbdNeverMatcher(),
@@ -258,7 +258,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testConstructWithArrayOfMatchersCustomNoMatchMergeStrategy()
+  void testConstructWithArrayOfMatchersCustomNoMatchMergeStrategy()
   {
     // Given
     IntentMatcher[] intentMatchers = { new AbcNeverMatcher(), new AbdNeverMatcher(), new NeverMatcher() };
@@ -276,7 +276,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testConstructWithListOfMatchersRejectsEmptyList()
+  void testConstructWithListOfMatchersRejectsEmptyList()
   {
     try
     {
@@ -296,7 +296,7 @@ public class CompoundIntentMatcherTest
   }
 
   @Test
-  public void testConstructWithArrayOfMatchersRejectsEmptyArray()
+  void testConstructWithArrayOfMatchersRejectsEmptyArray()
   {
     try
     {

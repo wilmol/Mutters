@@ -4,9 +4,9 @@ package com.rabidgremlin.mutters.bot.ink.functions;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.bot.ink.functions.orderbot.OrderInkBot;
 import com.rabidgremlin.mutters.bot.ink.functions.orderbot.OrderInkBotConfiguration;
@@ -14,12 +14,12 @@ import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.bot.BotResponse;
 import com.rabidgremlin.mutters.core.session.Session;
 
-public class TestLongTermFunctions
+class TestLongTermFunctions
 {
   private static final OrderInkBot orderBot = new OrderInkBot(new OrderInkBotConfiguration());
 
   @Test
-  public void testSetLongTermFunctionInScript() throws Exception
+  void testSetLongTermFunctionInScript() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -32,7 +32,7 @@ public class TestLongTermFunctions
   }
 
   @Test
-  public void testGetLongTermFunctionInScript() throws Exception
+  void testGetLongTermFunctionInScript() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -48,7 +48,7 @@ public class TestLongTermFunctions
   }
 
   @Test
-  public void testDeleteLongTermFunctionInScript() throws Exception
+  void testDeleteLongTermFunctionInScript() throws Exception
   {
     Session session = new Session();
     Context context = new Context();
@@ -66,7 +66,7 @@ public class TestLongTermFunctions
   }
 
   @Test
-  public void testGetLongTermFunctionInScriptNoValue() throws Exception
+  void testGetLongTermFunctionInScriptNoValue() throws Exception
   {
     Session session = new Session();
     Context context = new Context();

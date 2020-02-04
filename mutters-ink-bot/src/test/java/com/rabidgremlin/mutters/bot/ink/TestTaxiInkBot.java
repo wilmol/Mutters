@@ -5,12 +5,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.startsWith;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.bot.BotException;
@@ -18,18 +18,18 @@ import com.rabidgremlin.mutters.core.bot.BotResponse;
 import com.rabidgremlin.mutters.core.bot.BotResponseAttachment;
 import com.rabidgremlin.mutters.core.session.Session;
 
-public class TestTaxiInkBot
+class TestTaxiInkBot
 {
   private static TaxiInkBot taxiBot;
 
-  @BeforeClass
-  public static void setUpBot()
+  @BeforeAll
+  static void setUpBot()
   {
     taxiBot = new TaxiInkBot(new TaxiInkBotConfiguration());
   }
 
   @Test
-  public void testOrderTaxiWithAddress() throws BotException
+  void testOrderTaxiWithAddress() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -42,7 +42,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testOrderTaxiWithOutAddress() throws BotException
+  void testOrderTaxiWithOutAddress() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -61,7 +61,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testCancelTaxi() throws BotException
+  void testCancelTaxi() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -75,7 +75,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testTaxiStatus() throws BotException
+  void testTaxiStatus() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -89,7 +89,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testHintAndReprompt() throws BotException
+  void testHintAndReprompt() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -126,7 +126,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testAttachment() throws BotException
+  void testAttachment() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -146,7 +146,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testStop() throws BotException
+  void testStop() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -166,7 +166,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testHelp() throws BotException
+  void testHelp() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -180,7 +180,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testNoPardonFollowedByPardon() throws BotException
+  void testNoPardonFollowedByPardon() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -205,7 +205,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testNoPardonFollowedByPardonSecondCase() throws BotException
+  void testNoPardonFollowedByPardonSecondCase() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -233,7 +233,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testParagraphsPreserved() throws BotException
+  void testParagraphsPreserved() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -247,7 +247,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testSessionEndClearsReprompts() throws BotException
+  void testSessionEndClearsReprompts() throws BotException
   {
     Session session = new Session();
     Context context = new Context();
@@ -264,7 +264,7 @@ public class TestTaxiInkBot
   }
 
   @Test
-  public void testQuickReplies() throws BotException
+  void testQuickReplies() throws BotException
   {
     Session session = new Session();
     Context context = new Context();

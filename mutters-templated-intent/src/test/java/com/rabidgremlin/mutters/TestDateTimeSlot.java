@@ -3,14 +3,14 @@ package com.rabidgremlin.mutters;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.SlotMatch;
@@ -21,12 +21,12 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 import com.rabidgremlin.mutters.templated.TemplatedUtterance;
 import com.rabidgremlin.mutters.templated.TemplatedUtteranceMatch;
 
-public class TestDateTimeSlot
+class TestDateTimeSlot
 {
   private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
-  public void testBasicMatch()
+  void testBasicMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("for the {datetime}"));
 
@@ -50,7 +50,7 @@ public class TestDateTimeSlot
   }
 
   @Test
-  public void testMatchWithTimeZone()
+  void testMatchWithTimeZone()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("for the {datetime}"));
 
@@ -75,7 +75,7 @@ public class TestDateTimeSlot
   }
 
   @Test
-  public void testLastWeek()
+  void testLastWeek()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("Give me the report for {date}"));
 

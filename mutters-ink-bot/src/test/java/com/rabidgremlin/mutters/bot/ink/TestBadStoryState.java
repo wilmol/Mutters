@@ -3,32 +3,32 @@ package com.rabidgremlin.mutters.bot.ink;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.bot.BotException;
 import com.rabidgremlin.mutters.core.session.Session;
 import com.rabidgremlin.mutters.core.util.SessionUtils;
 
-public class TestBadStoryState
+class TestBadStoryState
 {
   private static TaxiInkBot taxiBot;
 
   // copied from InkBotSessionUtils logic
   private static final String INK_STORY_STATE_KEY = SessionUtils.SLOT_PREFIX + "0987654321STORYSTATE1234567890";
 
-  @BeforeClass
-  public static void setUpBot()
+  @BeforeAll
+  static void setUpBot()
   {
     taxiBot = new TaxiInkBot(new TaxiInkBotConfiguration());
   }
 
   @Test
-  public void testCorruptStoryState() throws BotException
+  void testCorruptStoryState() throws BotException
   {
     Session session = new Session();
     Context context = new Context();

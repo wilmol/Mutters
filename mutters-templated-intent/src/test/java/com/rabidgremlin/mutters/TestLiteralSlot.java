@@ -3,9 +3,9 @@ package com.rabidgremlin.mutters;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.rabidgremlin.mutters.core.Context;
 import com.rabidgremlin.mutters.core.SlotMatch;
@@ -15,12 +15,12 @@ import com.rabidgremlin.mutters.templated.SimpleTokenizer;
 import com.rabidgremlin.mutters.templated.TemplatedUtterance;
 import com.rabidgremlin.mutters.templated.TemplatedUtteranceMatch;
 
-public class TestLiteralSlot
+class TestLiteralSlot
 {
   private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
-  public void testBasicMatch()
+  void testBasicMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("My name is {name}"));
 
@@ -44,7 +44,7 @@ public class TestLiteralSlot
   }
 
   @Test
-  public void testMidUtteranceMatch()
+  void testMidUtteranceMatch()
   {
     TemplatedUtterance utterance = new TemplatedUtterance(tokenizer.tokenize("The {something} is good"));
 
