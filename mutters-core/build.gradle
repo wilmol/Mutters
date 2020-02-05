@@ -1,27 +1,24 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies { 
-        classpath 'ch.raffael.pegdown-doclet:pegdown-doclet:1.2'
-    }
+        classpath "ch.raffael.pegdown-doclet:pegdown-doclet:$pegdownDocletVersion"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
+    }  
 }
-apply from: '../buildpublish.gradle'
 
+apply from: '../buildpublish.gradle'
 
 repositories {   
     mavenCentral()
 }
 
 dependencies {    
-    compile 'joda-time:joda-time:2.9.4'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile "org.apache.commons:commons-lang3:$commonsLang3Version"
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.slf4j:slf4j-simple:1.7.21'
-    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.slf4j:slf4j-simple:$slf4jVersion"
+    testCompile "org.hamcrest:hamcrest-all:$hamcrestAllVersion"
 }
-
-
-

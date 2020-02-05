@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bert.doccat;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -5,7 +6,6 @@ import static com.google.common.base.Verify.verify;
 
 import java.util.List;
 
-import com.rabidgremlin.mutters.bert.tokenize.Tokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tensorflow.example.Feature;
@@ -13,9 +13,11 @@ import org.tensorflow.example.Features;
 import org.tensorflow.example.Int64List;
 
 import com.google.common.primitives.Longs;
+import com.rabidgremlin.mutters.bert.tokenize.Tokenizer;
 
 /**
- * Extracts features from text for document categorization. Only extracts features for tokens in the models vocab.
+ * Extracts features from text for document categorization. Only extracts
+ * features for tokens in the models vocab.
  * <p>
  * Based on: <a
  * href=https://github.com/google-research/bert/blob/master/extract_features.py>https://github.com/google-research/bert/blob/master/extract_features.py</a>
@@ -40,10 +42,11 @@ public class FeatureExtractor
   /**
    * Extracts the features from the text.
    * <p>
-   * Specifically: {@code segment_ids}, {@code label_ids}, {@code input_ids}, and {@code input_mask}.
+   * Specifically: {@code segment_ids}, {@code label_ids}, {@code input_ids}, and
+   * {@code input_mask}.
    * <p>
-   * Note: if the input text (number of words) exceeds the {@code max_seq_length} of the model the result will be
-   * truncated on the right.
+   * Note: if the input text (number of words) exceeds the {@code max_seq_length}
+   * of the model the result will be truncated on the right.
    *
    * @param text text to extract features from
    * @return extracted features
@@ -64,12 +67,9 @@ public class FeatureExtractor
       inputMasks[i] = 1;
     }
 
-    return Features.newBuilder()
-        .putFeature("segment_ids", createFeatureFrom(new long[model.maxSeqLength()]))
-        .putFeature("label_ids", createFeatureFrom(1))
-        .putFeature("input_ids", createFeatureFrom(inputIds))
-        .putFeature("input_mask", createFeatureFrom(inputMasks))
-        .build();
+    return Features.newBuilder().putFeature("segment_ids", createFeatureFrom(new long[model.maxSeqLength()]))
+        .putFeature("label_ids", createFeatureFrom(1)).putFeature("input_ids", createFeatureFrom(inputIds))
+        .putFeature("input_mask", createFeatureFrom(inputMasks)).build();
   }
 
   private static Feature createFeatureFrom(long... values)

@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -17,7 +18,7 @@ import com.rabidgremlin.mutters.templated.TemplatedUtteranceMatch;
 
 public class TestNumberSlot
 {
-  private SimpleTokenizer tokenizer = new SimpleTokenizer();
+  private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
   public void testBasicWordMatch()
@@ -37,9 +38,9 @@ public class TestNumberSlot
     assertThat(match.isMatched(), is(true));
     assertThat(match.getSlotMatches().size(), is(1));
 
-    SlotMatch slotMatch = match.getSlotMatches().get(slot);
+    SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
     assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOrginalValue(), is("One hundred two thousand and thirty four"));
+    assertThat(slotMatch.getOriginalValue(), is("One hundred two thousand and thirty four"));
     assertThat(slotMatch.getValue(), is(102034L));
   }
 
@@ -47,8 +48,7 @@ public class TestNumberSlot
   public void testWordStringToNumber()
   {
     NumberSlot slot = new NumberSlot("test");
-    Number result = slot
-        .wordStringToNumber("Three hundred fifty two thousand two hundred and sixty one");
+    Number result = slot.wordStringToNumber("Three hundred fifty two thousand two hundred and sixty one");
 
     assertThat(result, is(notNullValue()));
     assertThat(result, is(352261L));
@@ -75,9 +75,9 @@ public class TestNumberSlot
     assertThat(match.isMatched(), is(true));
     assertThat(match.getSlotMatches().size(), is(1));
 
-    SlotMatch slotMatch = match.getSlotMatches().get(slot);
+    SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
     assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOrginalValue(), is("123"));
+    assertThat(slotMatch.getOriginalValue(), is("123"));
     assertThat(slotMatch.getValue(), is(123L));
   }
 
@@ -99,9 +99,9 @@ public class TestNumberSlot
     assertThat(match.isMatched(), is(true));
     assertThat(match.getSlotMatches().size(), is(1));
 
-    SlotMatch slotMatch = match.getSlotMatches().get(slot);
+    SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
     assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOrginalValue(), is("546.12"));
+    assertThat(slotMatch.getOriginalValue(), is("546.12"));
     assertThat(slotMatch.getValue(), is(546.12));
   }
 

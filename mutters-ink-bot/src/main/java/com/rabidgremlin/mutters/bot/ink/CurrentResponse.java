@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class CurrentResponse
   {
     if (responseAttachments == null)
     {
-      responseAttachments = new ArrayList<BotResponseAttachment>();
+      responseAttachments = new ArrayList<>();
     }
 
     responseAttachments.add(attachment);
@@ -104,7 +105,7 @@ public class CurrentResponse
   {
     if (responseQuickReplies == null)
     {
-      responseQuickReplies = new ArrayList<String>();
+      responseQuickReplies = new ArrayList<>();
     }
 
     responseQuickReplies.add(quickReply);
@@ -113,8 +114,9 @@ public class CurrentResponse
   @Override
   public String toString()
   {
-    return "CurrentResponse [responseText=" + responseText + ", hint=" + hint + ", reprompt=" + reprompt + ", responseAttachments=" + responseAttachments
-        + ", responseQuickReplies=" + responseQuickReplies + ", askResponse=" + askResponse + "]";
+    return "CurrentResponse [responseText=" + responseText + ", hint=" + hint + ", reprompt=" + reprompt
+        + ", responseAttachments=" + responseAttachments + ", responseQuickReplies=" + responseQuickReplies
+        + ", askResponse=" + askResponse + "]";
   }
 
 }

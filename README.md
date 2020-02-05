@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.com/rabidgremlin/mutters.svg?branch=master)](https://travis-ci.com/rabidgremlin/mutters)
+[![codecov](https://codecov.io/gh/rabidgremlin/mutters/branch/master/graph/badge.svg)](https://codecov.io/gh/rabidgremlin/mutters)
+[![GitHub license](https://img.shields.io/github/license/rabidgremlin/mutters.svg)](https://github.com/rabidgremlin/mutters/blob/master/LICENSE)
+
 # Mutters
 A Java framework for building bot brains. Heavily inspired by Amazon Echo's natural language understanding model.  
 
@@ -220,10 +224,10 @@ repositories {
 }
 
 dependencies {
-        compile 'com.rabidgremlin:mutters-ink-bot:5.0.4'
-        compile 'com.rabidgremlin:mutters-opennlp-intent:5.0.4'        
-        compile 'com.rabidgremlin:mutters-opennlp-ner:5.0.4'
-        compile 'com.rabidgremlin:mutters-slots:5.0.4'
+        compile 'com.rabidgremlin:mutters-ink-bot:7.0.0'
+        compile 'com.rabidgremlin:mutters-opennlp-intent:7.0.0'        
+        compile 'com.rabidgremlin:mutters-opennlp-ner:7.0.0'
+        compile 'com.rabidgremlin:mutters-slots:7.0.0'
 }
 ```
 
@@ -241,10 +245,10 @@ repositories {
 }
 
 dependencies {
-        compile 'com.rabidgremlin:mutters-ink-bot:5.0.4-SNAPSHOT'
-        compile 'com.rabidgremlin:mutters-opennlp-intent:5.0.4-SNAPSHOT'
-        compile 'com.rabidgremlin:mutters-opennlp-ner:5.0.4-SNAPSHOT'
-        compile 'com.rabidgremlin:mutters-slots:5.0.4-SNAPSHOT'        
+        compile 'com.rabidgremlin:mutters-ink-bot:7.0.0-SNAPSHOT'
+        compile 'com.rabidgremlin:mutters-opennlp-intent:7.0.0-SNAPSHOT'
+        compile 'com.rabidgremlin:mutters-opennlp-ner:7.0.0-SNAPSHOT'
+        compile 'com.rabidgremlin:mutters-slots:7.0.0-SNAPSHOT'        
 }        
 ```
 

@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.opennlp.intent;
 
 import com.rabidgremlin.mutters.core.Tokenizer;
@@ -8,10 +9,9 @@ import com.rabidgremlin.mutters.core.Tokenizer;
  * @author rabidgremlin
  *
  */
-public class OpenNLPTokenizer
-    implements Tokenizer
+public class OpenNLPTokenizer implements Tokenizer
 {
-  private opennlp.tools.tokenize.Tokenizer tokenizer;
+  private final opennlp.tools.tokenize.Tokenizer tokenizer;
 
   /**
    * Constructor.

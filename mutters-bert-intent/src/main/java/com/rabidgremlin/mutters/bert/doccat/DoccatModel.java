@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bert.doccat;
 
 import static com.google.common.collect.ImmutableMap.toImmutableMap;
@@ -20,8 +21,7 @@ import com.google.common.collect.Streams;
  *
  * @author wilmol
  */
-public class DoccatModel
-    implements AutoCloseable
+public class DoccatModel implements AutoCloseable
 {
   private final Logger log = LoggerFactory.getLogger(DoccatModel.class);
 
@@ -36,10 +36,10 @@ public class DoccatModel
   /**
    * Constructor; loads the BERT model and associated files.
    *
-   * @param modelPath path to the saved_model.pb file and variables folder
+   * @param modelPath    path to the saved_model.pb file and variables folder
    * @param maxSeqLength {@code max_seq_length} value used to train the model
-   * @param labelsPath path to the labels.txt file used to train the model
-   * @param vocabPath path to the vocab.txt file used to train the model
+   * @param labelsPath   path to the labels.txt file used to train the model
+   * @param vocabPath    path to the vocab.txt file used to train the model
    * @throws IllegalArgumentException if loading the model fails
    */
   public DoccatModel(String modelPath, int maxSeqLength, String labelsPath, String vocabPath)
@@ -63,8 +63,7 @@ public class DoccatModel
     try
     {
       // TODO(wilmol) use Resources#getResource here?
-      modelLabels = Files.lines(new File(labelsPath).toPath())
-          .map(line -> line.split(","))
+      modelLabels = Files.lines(new File(labelsPath).toPath()).map(line -> line.split(","))
           .collect(toImmutableMap(split -> Integer.parseInt(split[0]), split -> split[1].trim()));
     }
     catch (Exception e)

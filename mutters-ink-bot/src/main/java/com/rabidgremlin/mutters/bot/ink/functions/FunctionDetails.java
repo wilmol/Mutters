@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters.bot.ink.functions;
 
 import java.util.Collections;
@@ -11,13 +12,13 @@ import java.util.Map;
 public class FunctionDetails
 {
   /** The data string. */
-  private String functionData;
+  private final String functionData;
 
   /** The data string parsed into params. */
   private Map<String, String> functionParams;
 
   public FunctionDetails(String functionData)
-  {  
+  {
     this.functionData = functionData;
   }
 
@@ -40,7 +41,7 @@ public class FunctionDetails
   {
     if (functionParams == null)
     {
-      functionParams = new HashMap<String, String>();
+      functionParams = new HashMap<>();
     }
 
     functionParams.put(name, value);

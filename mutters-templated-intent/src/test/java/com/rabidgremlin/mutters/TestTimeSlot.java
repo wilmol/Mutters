@@ -1,12 +1,13 @@
+/* Licensed under Apache-2.0 */
 package com.rabidgremlin.mutters;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.time.LocalTime;
 import java.util.TimeZone;
 
-import org.joda.time.LocalTime;
 import org.junit.Test;
 
 import com.rabidgremlin.mutters.core.Context;
@@ -19,7 +20,7 @@ import com.rabidgremlin.mutters.templated.TemplatedUtteranceMatch;
 
 public class TestTimeSlot
 {
-  private SimpleTokenizer tokenizer = new SimpleTokenizer();
+  private final SimpleTokenizer tokenizer = new SimpleTokenizer();
 
   @Test
   public void testBasicMatch()
@@ -39,10 +40,10 @@ public class TestTimeSlot
     assertThat(match.isMatched(), is(true));
     assertThat(match.getSlotMatches().size(), is(1));
 
-    SlotMatch slotMatch = match.getSlotMatches().get(slot);
+    SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
     assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOrginalValue(), is("6:45am"));
-    assertThat(slotMatch.getValue(), is(new LocalTime(6, 45)));
+    assertThat(slotMatch.getOriginalValue(), is("6:45am"));
+    assertThat(slotMatch.getValue(), is(LocalTime.of(6, 45)));
   }
 
   @Test
@@ -64,10 +65,10 @@ public class TestTimeSlot
     assertThat(match.isMatched(), is(true));
     assertThat(match.getSlotMatches().size(), is(1));
 
-    SlotMatch slotMatch = match.getSlotMatches().get(slot);
+    SlotMatch<?> slotMatch = match.getSlotMatches().get(slot);
     assertThat(slotMatch, is(notNullValue()));
-    assertThat(slotMatch.getOrginalValue(), is("6:45am"));
-    assertThat(slotMatch.getValue(), is(new LocalTime(6, 45)));
+    assertThat(slotMatch.getOriginalValue(), is("6:45am"));
+    assertThat(slotMatch.getValue(), is(LocalTime.of(6, 45)));
   }
 
 }
