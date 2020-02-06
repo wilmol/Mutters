@@ -7,9 +7,13 @@ import static com.google.common.collect.ImmutableSortedMap.toImmutableSortedMap;
 
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -73,7 +77,8 @@ public class BertIntentMatcher implements IntentMatcher
     ImmutableSortedMap<Double, SortedSet<String>> scores = documentCategorizer.categorize(utterance).stream()
         .collect(toImmutableSortedMap(Comparator.reverseOrder(), LabelAndScore::predictionScore,
             labelAndScore -> ImmutableSortedSet.of(labelAndScore.label()),
-            (a, b) -> ImmutableSortedSet.copyOf(Sets.union(a, b))));
+            (BinaryOperator<SortedSet<String>>) ((BiFunction<SortedSet<String>, SortedSet<String>, Set<String>>) Sets::union)
+                .andThen((Function<Set<String>, SortedSet<String>>) ImmutableSortedSet::copyOf)));
 
     if (scores.isEmpty())
     {
@@ -87,13 +92,14 @@ public class BertIntentMatcher implements IntentMatcher
     {
       // if expectedIntents is null, then take highest score regardless
       highestScore = scores.firstKey();
+      // TODO what if multiple intents share the same score?
       topScoringIntent = scores.get(highestScore).iterator().next();
     }
     else
     {
-      LabelAndScore highestIntentScorePair = getHighestScoringExpectedIntent(expectedIntents, scores);
-      topScoringIntent = highestIntentScorePair.label();
-      highestScore = highestIntentScorePair.predictionScore();
+      Optional<LabelAndScore> highestIntentScorePair = getHighestScoringExpectedIntent(expectedIntents, scores);
+      topScoringIntent = highestIntentScorePair.map(LabelAndScore::label).orElse("");
+      highestScore = highestIntentScorePair.map(LabelAndScore::predictionScore).orElse(0d);
     }
 
     if (highestScore < botConfidence || topScoringIntent.isEmpty())
@@ -108,27 +114,24 @@ public class BertIntentMatcher implements IntentMatcher
     Map<Slot<?>, SlotMatch<?>> matchedSlots = slotMatcher.match(context, bestIntent, utterance);
 
     log.info("Matched Intent: " + bestIntent.getName() + " " + highestScore);
-
     return new IntentMatch(bestIntent, matchedSlots, utterance, new MatcherScores(scores));
   }
 
-  private LabelAndScore getHighestScoringExpectedIntent(Set<String> expectedIntents,
+  private Optional<LabelAndScore> getHighestScoringExpectedIntent(Set<String> expectedIntents,
       SortedMap<Double, SortedSet<String>> scores)
   {
-    String topScoringIntent = "";
-    Double highestScore = 0d;
-
     for (Map.Entry<Double, SortedSet<String>> entry : scores.entrySet())
     {
-      highestScore = entry.getKey();
-      topScoringIntent = entry.getValue().iterator().next();
-
-      if (expectedIntents.contains(topScoringIntent))
+      double score = entry.getKey();
+      // TODO what if multiple intents share the same score?
+      for (String intent : entry.getValue())
       {
-        break;
+        if (expectedIntents.contains(intent))
+        {
+          return Optional.of(new LabelAndScore(intent, score));
+        }
       }
     }
-
-    return new LabelAndScore(topScoringIntent, highestScore);
+    return Optional.empty();
   }
 }
