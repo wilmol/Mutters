@@ -68,6 +68,8 @@ public class AbstractSlotTest
     assertEquals(slot, slotWithSameName);
     assertNotEquals(slot, slotWithDifferentName);
     assertEquals(slot, slotWithSameNameDifferentClass);
+    assertEquals(slot, slot);
+    assertNotEquals(slot, 1);
   }
 
   @Test
