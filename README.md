@@ -1,4 +1,4 @@
-[![build](https://github.com/rabidgremlin/mutters/workflows/build/badge.svg)](https://github.com/rabidgremlin/mutters/actions?query=workflow%3Abuild)
+[![build](https://github.com/rabidgremlin/mutters/workflows/build/badge.svg?event=push)](https://github.com/rabidgremlin/mutters/actions?query=workflow%3Abuild)
 [![codecov](https://codecov.io/gh/rabidgremlin/mutters/branch/master/graph/badge.svg)](https://codecov.io/gh/rabidgremlin/mutters)
 [![GitHub license](https://img.shields.io/github/license/rabidgremlin/mutters.svg)](https://github.com/rabidgremlin/mutters/blob/master/LICENSE)
 
