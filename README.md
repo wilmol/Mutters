@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/rabidgremlin/mutters.svg?branch=master)](https://travis-ci.com/rabidgremlin/mutters)
+[![build](https://github.com/rabidgremlin/mutters/workflows/build/badge.svg?event=push)](https://github.com/rabidgremlin/mutters/actions?query=workflow%3Abuild)
 [![codecov](https://codecov.io/gh/rabidgremlin/mutters/branch/master/graph/badge.svg)](https://codecov.io/gh/rabidgremlin/mutters)
 [![GitHub license](https://img.shields.io/github/license/rabidgremlin/mutters.svg)](https://github.com/rabidgremlin/mutters/blob/master/LICENSE)
 
@@ -224,10 +224,10 @@ repositories {
 }
 
 dependencies {
-        compile 'com.rabidgremlin:mutters-ink-bot:7.0.0'
-        compile 'com.rabidgremlin:mutters-opennlp-intent:7.0.0'        
-        compile 'com.rabidgremlin:mutters-opennlp-ner:7.0.0'
-        compile 'com.rabidgremlin:mutters-slots:7.0.0'
+        compile 'com.rabidgremlin:mutters-ink-bot:7.1.0'
+        compile 'com.rabidgremlin:mutters-opennlp-intent:7.1.0'        
+        compile 'com.rabidgremlin:mutters-opennlp-ner:7.1.0'
+        compile 'com.rabidgremlin:mutters-slots:7.1.0'
 }
 ```
 
@@ -245,10 +245,10 @@ repositories {
 }
 
 dependencies {
-        compile 'com.rabidgremlin:mutters-ink-bot:7.0.0-SNAPSHOT'
-        compile 'com.rabidgremlin:mutters-opennlp-intent:7.0.0-SNAPSHOT'
-        compile 'com.rabidgremlin:mutters-opennlp-ner:7.0.0-SNAPSHOT'
-        compile 'com.rabidgremlin:mutters-slots:7.0.0-SNAPSHOT'        
+        compile 'com.rabidgremlin:mutters-ink-bot:7.1.0-SNAPSHOT'
+        compile 'com.rabidgremlin:mutters-opennlp-intent:7.1.0-SNAPSHOT'
+        compile 'com.rabidgremlin:mutters-opennlp-ner:7.1.0-SNAPSHOT'
+        compile 'com.rabidgremlin:mutters-slots:7.1.0-SNAPSHOT'        
 }        
 ```
 
